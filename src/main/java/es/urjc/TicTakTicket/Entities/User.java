@@ -1,7 +1,10 @@
 package es.urjc.TicTakTicket.Entities;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -10,6 +13,9 @@ public class User {
 	private String username;
 	
 	private String password;
+	
+	@OneToMany
+	private ArrayList<Order> orders = new ArrayList<>();
 	
 	protected User() {}
 	
