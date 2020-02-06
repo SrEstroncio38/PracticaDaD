@@ -18,18 +18,66 @@ public class Payment {
 	@ManyToOne
 	private User user;
 	
-	private String owner_name;
-	private String card_number;
-	private Date expire_date;
+	private String ownerName;
+	private String cardNumber;
+	private Date expireDate;
 	private short cvv;
 	
 	protected Payment() {}
 	
-	public Payment(User user, String owner_name, String card_number, Date expire_date, short cvv) {
+	public Payment(User user, String ownerName, String cardNumber, Date expireDate, short cvv) {
 		this.user = user;
-		this.owner_name = owner_name;
-		this.card_number = card_number;
-		this.expire_date = expire_date;
+		this.ownerName = ownerName;
+		this.cardNumber = cardNumber;
+		this.expireDate = expireDate;
+		this.cvv = cvv;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public Date getExpireDate() {
+		return expireDate;
+	}
+
+	public void setExpireDate(Date expireDate) {
+		this.expireDate = expireDate;
+	}
+
+	public short getCvv() {
+		return cvv;
+	}
+
+	public void setCvv(short cvv) {
 		this.cvv = cvv;
 	}
 
