@@ -4,23 +4,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Events {
+public class Event {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@OneToOne
-	private Users user;
+	@ManyToOne
+	private User user;
 	
 	private String name;
 	
-	protected Events() {}
+	protected Event() {}
 	
-	public Events(Users user, String name) {
+	public Event(User user, String name) {
 		this.user = user;
 		this.name = name;
 	}

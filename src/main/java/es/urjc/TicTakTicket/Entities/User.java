@@ -4,16 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Users {
+public class User {
 	
 	@Id
 	private String username;
 	
 	private String password;
 	
-	protected Users() {}
+	protected User() {}
 	
-	public Users(String username, String password) {
+	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
