@@ -1,7 +1,9 @@
 package es.urjc.TicTakTicket.Entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,15 +19,17 @@ public class Order {
 	private int id;
 	
 	private float totalPrice;
-	private ArrayList<String> names = new ArrayList<>();
+	@Embedded
+	private List<String> names = new ArrayList<>();
 	
 	@OneToMany
-	private ArrayList<Ticket> tickets = new ArrayList<>();
+	private List<Ticket> tickets = new ArrayList<>();
 	
 	@ManyToOne
 	private User user;
 	
-	private ArrayList<Integer> sits = new ArrayList<>();
+	@Embedded
+	private List<Integer> sits = new ArrayList<>();
 	
 	protected Order() {}
 	
@@ -59,7 +63,7 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
-	public ArrayList<String> getNames() {
+	public List<String> getNames() {
 		return names;
 	}
 
@@ -67,7 +71,7 @@ public class Order {
 		this.names = names;
 	}
 
-	public ArrayList<Ticket> getTickets() {
+	public List<Ticket> getTickets() {
 		return tickets;
 	}
 
@@ -83,7 +87,7 @@ public class Order {
 		this.user = user;
 	}
 
-	public ArrayList<Integer> getSits() {
+	public List<Integer> getSits() {
 		return sits;
 	}
 

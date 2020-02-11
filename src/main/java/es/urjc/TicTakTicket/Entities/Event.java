@@ -1,6 +1,7 @@
 package es.urjc.TicTakTicket.Entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Event {
 	private String description;
 	
 	@OneToMany
-	private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+	private List<Ticket> tickets = new ArrayList<Ticket>();
 	
 	protected Event() {}
 	
