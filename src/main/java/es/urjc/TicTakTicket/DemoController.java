@@ -21,7 +21,7 @@ public class DemoController {
 		repository.save(new User("Paco","1234"));
 	}
 
-	@RequestMapping("/")
+	@RequestMapping("/demo")
 	public String Demo(Model model) {
 		
 		model.addAttribute("anuncios", repository.findAll());
