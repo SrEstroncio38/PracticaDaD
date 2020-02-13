@@ -8,5 +8,4 @@ public interface EventRepository extends JpaRepository<Event,Integer>{
 
 	List<Event> findByUser(User user);
 	List<Event> findByName(String name);
-	
 }

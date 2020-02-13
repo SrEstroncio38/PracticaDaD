@@ -1,12 +1,56 @@
 {{> includes/header}}
 
-	<!-- Begin Page Content -->
-	<div class="container-fluid">
-	
-	  <!-- Page Heading -->
-	  <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
-	
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+	{{#events}}
+	<div class="card shadow mb-4">
+		<!-- Card Header - Accordion -->
+		<a href="#collapse{{-index}}" class="d-block card-header py-3"
+			data-toggle="collapse" role="button" aria-expanded="true"
+			aria-controls="collapseCardExample">
+			<h4 class="m-0 font-weight-bold text-primary">{{name}}</h4>
+		</a>
+		<!-- Card Content - Collapse -->
+		<div class="collapse show" id="collapse{{-index}}" style="">
+			<div class="card-body">
+				<h4>
+					<strong>Creador del evento: </strong>{{user.username}}
+				</h4>
+				<hr>
+				<h6>
+					<strong>Descripción del evento: </strong>
+				</h6>
+				<p>{{description}}</p>
+				<hr>
+				<h4>
+					<strong>Tickets: </strong>
+				</h4>
+				<div class="row">
+				{{#tickets}}
+				<div class="col-4">
+					<div class="card border-left-primary shadow h-100 py-2">
+						<div class="card-body">
+							<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+									<div
+										class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{name}}</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">Precio: {{price}} €</div>
+								</div>
+								<div class="col-auto">
+									<i class="fas fa-money-bill-alt fa-2x text-gray-300"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{/tickets}}
+				</div>
+			</div>
+		</div>
 	</div>
-	<!-- /.container-fluid -->
+	{{/events}}
+</div>
+<!-- /.container-fluid -->
 
 {{> includes/footer}}

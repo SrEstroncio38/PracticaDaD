@@ -47,7 +47,7 @@ public class CreateEventController {
 	public String Load(Model model, @PathVariable(required = false) String username) {
 		if (username != null) {
 			Optional<User> user = userR.findById(username);
-			if (user != null) {
+			if (user.isPresent()) {
 				eventUser = user.get();
 			} 
 		} else {
