@@ -43,4 +43,11 @@ Texto
 
 ### Modelo de datos ###
 
+
+- **Modelo E/R** 
+
+![EntidadRelacion (Fase 2)](./pictures/EntidadRelacion.png)
+
+- **UML**
+
 ![UML (Fase 2)](./pictures/UML.png)
