@@ -1,11 +1,13 @@
 # Tic Tak Ticket
 
-## Descripción general ##
+## Fase 1 ##
+
+### Descripción general ###
 
 Se desarrollará una web de venta de ticket, en la que el usuario podrá observar las ofertas disponibles y loguearse para adquirir entradas.
 La aplicación te permitirá observar los diferentes eventos, horarios, precios de forma pública, sin necesidad de ningún tipo de elemento o método identificador. Una vez el usuario inicie sesión, tendrá acceso a los elementos de adquisición de entradas y a la publicación de eventos nuevos.
 
-## Entidades principales ##
+### Entidades principales ###
 
 - **Usuarios**: Tendrán su propio nombre de usuario, único para cada uno, a parte de otros datos personales a rellenar del mismo. Podrán obtener de 0 a N compras de diferentes eventos, también poseer de 0 a N eventos a su nombre de usuario.
 
@@ -15,11 +17,11 @@ La aplicación te permitirá observar los diferentes eventos, horarios, precios 
 
 - **Compra**: En esta entidad se asociará la compra de una entrada mediante un usuario, dejando así reflejado la posesión de la misma del usuario para recuperarlo más fácilmente y el coste final de la misma compra.
 
-## Descripción servicio interno ##
+### Descripción servicio interno ###
 
 Cuando el usuario adquiera una entrada, se enviará a este un correo con el pdf de su entrada adjunto. El usuario podrá recuperar sus entradas cuando necesite desde su perfil en la propia aplicación.
 
-## Equipo de desarrollo ##
+### Equipo de desarrollo ###
 
 - **Carlos Ruiz Romero**:
   - Correo: c.ruizr.2016@alumnos.urjc.es
@@ -29,3 +31,16 @@ Cuando el usuario adquiera una entrada, se enviará a este un correo con el pdf 
   - Correo: d.fontela.2016@alumnos.urjc.es
   - Cuenta GitHub: [SrEstroncio38](https://github.com/SrEstroncio38)
     
+## Fase 2 ##
+
+### Diseño de la página ###
+
+Texto
+
+### Diagrama de navegación ###
+
+Texto
+
+### Modelo de datos ###
+
+![UML (Fase 2)](./pictures/UML.png)
