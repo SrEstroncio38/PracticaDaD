@@ -22,10 +22,11 @@ public class Ticket {
 	
 	protected Ticket() {}
 	
-	public Ticket(float price, String name, Event event) {
+	public Ticket(float price, String name, String description, Event event) {
 		this.price = price;
 		this.name = name;
 		this.event = event;
+		this.description = description;
 	}
 
 	public int getId() {

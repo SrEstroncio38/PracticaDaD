@@ -71,5 +71,9 @@ public class Event {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public void addTicket(Ticket ticket) {
+		this.tickets.add(ticket);
+	}
 
 }

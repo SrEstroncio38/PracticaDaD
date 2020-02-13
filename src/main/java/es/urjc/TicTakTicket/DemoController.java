@@ -19,6 +19,7 @@ public class DemoController {
 	@PostConstruct
 	public void init() {
 		repository.save(new User("Paco","1234"));
+		
 	}
 
 	@RequestMapping("/demo")

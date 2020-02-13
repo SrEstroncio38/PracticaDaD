@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Tic Tak Ticket | Dashboard</title>
+  <title>Tic Tak Ticket | Crear Evento</title>
 
   <!-- Custom fonts for this template-->
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -149,7 +149,51 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+          <div class="col-12">
+          	<div class="card shadow mb-4">
+                <!-- Card Header - Accordion -->
+                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary">Crea tu evento</h6>
+                </a>
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="collapseCardCreateEvent" style="">
+                  <div class="card-body">
+                    <form method='post' action='/createEvent'>
+                    <div class="row">
+                    	<div class="col-6">
+                    		<p>Nombre del evento</p>
+                    		<input type='text' name='eventName' class="form-control form-control-user" placeholder="Nombre del evento"/>
+	                    </div>
+	                    
+	                    <div class="col-7">
+                    		<p>Descripción del evento</p>
+                    		<textarea name='eventDesc' class="form-control form-control-user" rows=5 style="resize: none"placeholder="Descripción del evento" ></textarea>
+	                    </div>
+	                    
+	                    <div class="col-6">
+                    		<p>Nombre del Ticket</p>
+                    		<input type='text' name='ticketName' class="form-control form-control-user" placeholder="Nombre del Ticket"/>
+	                    </div>
+	                    
+	                    <div class="col-6">
+                    		<p>Precio del Ticket</p>
+                    		<input type='text' name='ticketPrice' class="form-control form-control-user" placeholder="Precio del Ticket"/>
+	                    </div>
+	                    
+	                     <div class="col-7">
+                    		<p>Descripción del ticket</p>
+                    		<textarea name='ticketDesc' class="form-control form-control-user" rows=5 style="resize: none"placeholder="Descripción del ticket" ></textarea>
+	                    </div>
+	                    	
+	                    <div class="col-4 offset-4" style="padding-top: 15px">
+	                    	<input type="submit" value='Enviar' class="btn btn-primary btn-user btn-block"/>
+	                    </div>
+                    </div>	
+                    </form>
+                  </div>
+                </div>
+              </div>
+          </div>
 
         </div>
         <!-- /.container-fluid -->
