@@ -10,6 +10,8 @@ public class DashboardController {
 	@RequestMapping("/")
 	public String Load(Model model) {
 		
+		model.addAttribute("page_title", "Inicio");
+		
 		return "dashboard_template";
 	}
 	

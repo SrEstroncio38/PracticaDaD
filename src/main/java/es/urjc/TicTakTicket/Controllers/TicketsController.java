@@ -10,6 +10,8 @@ public class TicketsController {
 	@RequestMapping("/tickets")
 	public String register(Model model) {
 		
+		model.addAttribute("page_title", "Tickets");
+		
 		return "tickets_template";
 	}
 }

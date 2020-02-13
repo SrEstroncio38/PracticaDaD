@@ -10,6 +10,8 @@ public class EventsController {
 	@RequestMapping("/events")
 	public String Load(Model model) {
 		
+		model.addAttribute("page_title", "Eventos");
+		
 		return "events_template";
 	}
 	

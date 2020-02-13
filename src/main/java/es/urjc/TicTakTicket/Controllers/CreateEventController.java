@@ -54,6 +54,7 @@ public class CreateEventController {
 			eventUser = userR.findById("default").get();
 		}
 		
+		model.addAttribute("page_title", "Crear Evento");
 		
 		return "createEvent_template";
 	}

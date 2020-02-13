@@ -10,6 +10,8 @@ public class ProfileController {
 	@RequestMapping("/user")
 	public String register(Model model) {
 		
+		model.addAttribute("page_title", "Perfil");
+		
 		return "user_template";
 	}
 }
