@@ -1,12 +1,29 @@
 {{> includes/header}}
 
-	<!-- Begin Page Content -->
-	<div class="container-fluid">
-	
-	  <!-- Page Heading -->
-	  <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
-	
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+	<!-- Page Heading -->
+	<div class="col-12">
+		<div class="card shadow mb-4">
+			<!-- Card Header - Accordion -->
+			<a href="#collapseCardExample" class="d-block card-header py-3"
+				data-toggle="collapse" role="button" aria-expanded="true"
+				aria-controls="collapseCardExample">
+				<h6 class="m-0 font-weight-bold text-primary">Pago</h6>
+			</a>
+			<!-- Card Content - Collapse -->
+			<div class="collapse show" id="collapseCardCreateEvent" style="">
+				<div class="card-body">
+					<a href="/addCard" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="">
+						<i class="fas fa-credit-card"></i>&emsp;A&ntilde;adir una tarjeta
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!-- /.container-fluid -->
+
+</div>
+<!-- /.container-fluid -->
 
 {{> includes/footer}}
