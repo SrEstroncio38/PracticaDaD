@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,28 +24,22 @@ public class Order {
 	@Embedded
 	private List<String> names = new ArrayList<>();
 	
-	@OneToMany
+	@ManyToMany
 	private List<Ticket> tickets = new ArrayList<>();
 	
 	@ManyToOne
 	private User user;
 	
-	@Embedded
-	private List<Integer> sits = new ArrayList<>();
-	
 	protected Order() {}
 	
-	public Order(String[] names, ArrayList<Ticket> tickets, User user, int[] sits) {
+	public Order(List<String> names, List<Ticket> tickets, User user) {
 		this.user = user;
 		for (Ticket t : tickets) {
 			this.tickets.add(t);
 			this.totalPrice += t.getPrice();
 		}
-		for (int i = 0; i < names.length; i++) {
-			this.names.add(names[i]);
-		}
-		for (int i = 0; i < sits.length; i++) {
-			this.sits.add(sits[i]);
+		for (String n : names) {
+			this.names.add(n);
 		}
 	}
 
@@ -87,13 +81,5 @@ public class Order {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public List<Integer> getSits() {
-		return sits;
-	}
-
-	public void setSits(ArrayList<Integer> sits) {
-		this.sits = sits;
 	}
 }
