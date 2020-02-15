@@ -15,9 +15,30 @@
 			<!-- Card Content - Collapse -->
 			<div class="collapse show" id="collapseCardCreateEvent" style="">
 				<div class="card-body">
+				
+					{{#cards}}
+					<div class="row">
+						<div class="col-8">
+							{{cardNumber}}
+						</div>
+						<div class="col-4">
+						<a href="/" class="col-12 d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" style="">
+							<i class="fas fa-trash"></i>&emsp;Eliminar
+						</a>
+						</div>
+					</div>
+					<br>
+					{{/cards}}
+					
+					{{^cards}}
+					<div class="col12">No existen tarjetas</div>
+					<br>
+					{{/cards}}
+					
 					<a href="/addCard" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="">
 						<i class="fas fa-credit-card"></i>&emsp;A&ntilde;adir una tarjeta
 					</a>
+					
 				</div>
 			</div>
 		</div>
