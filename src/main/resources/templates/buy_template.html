@@ -15,12 +15,12 @@
 			<!-- Card Content - Collapse -->
 			<div class="collapse show" id="collapseCardAddCard" style="">
 				<div class="card-body">
-					<form method='post' action='/pay'>
+					<form method='post' action='/pay' id="paymentform">
 						<div class="row">
 							<div class="col-12">
 								<p>Tarjeta a usar:</p>
-								<select name='selectedCard'
-									class="form-control form-control-user"> {{#cards}}
+								<select name="selectedCard" class="form-control form-control-user" form="paymentform">
+									{{#cards}}
 									<option value="{{cardNumber}}">{{displayNumber}}</option>
 									{{/cards}}
 								</select>
@@ -34,7 +34,7 @@
 								<p>Tickets:</p>
 							</div>
 							{{#tickets}}
-							<a class="col-4 ticket-button" data-ticketid="{{-index}}" data-ticketname="{{name}}" data-ticketprice="{{price}}" style="cursor: pointer">
+							<a class="col-4 ticket-button" data-ticketid="{{id}}" data-ticketname="{{name}}" data-ticketprice="{{price}}" style="cursor: pointer">
 								<div class="card border-left-primary shadow h-100 py-2">
 									<div class="card-body">
 										<div class="row no-gutters align-items-center">
@@ -61,8 +61,9 @@
 								<p>[Ticket] Nombre de la persona:</p>
 							</div>
 							<div class="col-8">
-	            				<input type='text' name='person-0' class="form-control form-control-user inputname" placeholder="Nombre"/>
-	            				<input type='number' name='price-0' class="inputprice" hidden=""/>
+	            				<input type='text' name='person_0' class="form-control form-control-user inputname" placeholder="Nombre"/>
+	            				<input type='number' name='price_0' class="inputprice" hidden=""/>
+	            				<input type='number' name='tickettype_0' class="inputtype" hidden=""/>
 							</div>
 							<div class="col-4">
 								<div class="btn btn-danger btn-user btn-block delete-ticket" style="cursor: pointer" data-ticketid="0">
@@ -76,8 +77,9 @@
 								<p>[Ticket] Nombre de la persona:</p>
 							</div>
 							<div class="col-8">
-	            				<input type='text' name='person-1' class="form-control form-control-user inputname" placeholder="Nombre"/>
-	            				<input type='number' name='price-1' class="inputprice" hidden=""/>
+	            				<input type='text' name='person_1' class="form-control form-control-user inputname" placeholder="Nombre"/>
+	            				<input type='number' name='price_1' class="inputprice" hidden=""/>
+	            				<input type='number' name='tickettype_1' class="inputtype" hidden=""/>
 							</div>
 							<div class="col-4">
 								<div class="btn btn-danger btn-user btn-block delete-ticket" style="cursor: pointer" data-ticketid="1">
@@ -91,8 +93,9 @@
 								<p>[Ticket] Nombre de la persona:</p>
 							</div>
 							<div class="col-8">
-	            				<input type='text' name='person-2' class="form-control form-control-user inputname" placeholder="Nombre"/>
-	            				<input type='number' name='price-2' class="inputprice" hidden=""/>
+	            				<input type='text' name='person_2' class="form-control form-control-user inputname" placeholder="Nombre"/>
+	            				<input type='number' name='price_2' class="inputprice" hidden=""/>
+	            				<input type='number' name='tickettype_2' class="inputtype" hidden=""/>
 							</div>
 							<div class="col-4">
 								<div class="btn btn-danger btn-user btn-block delete-ticket" style="cursor: pointer" data-ticketid="2">
@@ -106,8 +109,9 @@
 								<p>[Ticket] Nombre de la persona:</p>
 							</div>
 							<div class="col-8">
-	            				<input type='text' name='person-3' class="form-control form-control-user inputname" placeholder="Nombre"/>
-	            				<input type='number' name='price-3' class="inputprice" hidden=""/>
+	            				<input type='text' name='person_3' class="form-control form-control-user inputname" placeholder="Nombre"/>
+	            				<input type='number' name='price_3' class="inputprice" hidden=""/>
+	            				<input type='number' name='tickettype_3' class="inputtype" hidden=""/>
 							</div>
 							<div class="col-4">
 								<div class="btn btn-danger btn-user btn-block delete-ticket" style="cursor: pointer" data-ticketid="3">
@@ -121,8 +125,9 @@
 								<p>[Ticket] Nombre de la persona:</p>
 							</div>
 							<div class="col-8">
-	            				<input type='text' name='person-4' class="form-control form-control-user inputname" placeholder="Nombre"/>
-	            				<input type='number' name='price-4' class="inputprice" hidden=""/>
+	            				<input type='text' name='person_4' class="form-control form-control-user inputname" placeholder="Nombre"/>
+	            				<input type='number' name='price_4' class="inputprice" hidden=""/>
+	            				<input type='number' name='tickettype_4' class="inputtype" hidden=""/>
 							</div>
 							<div class="col-4">
 								<div class="btn btn-danger btn-user btn-block delete-ticket" style="cursor: pointer" data-ticketid="4">
@@ -166,6 +171,8 @@
 				text.html("[" + $(this).data("ticketname") + "] Nombre de la persona:");
 				var price = object.find(".inputprice");
 				price.val($(this).data("ticketprice"));
+				var type = object.find(".inputtype");
+				type.val(ticketid);
 				break;
 			}
 		}
@@ -176,8 +183,9 @@
 		var ticketid = $(this).data("ticketid");
 		var object = $("#ticket-"+ticketid);
 		object.hide();
-		object.find(".inputname").val("")
-		object.find(".inputprice").val("")
+		object.find(".inputname").val("");
+		object.find(".inputprice").val(0);
+		object.find(".inputtype").val(0);
 		updatePrice();
 	});
 	
