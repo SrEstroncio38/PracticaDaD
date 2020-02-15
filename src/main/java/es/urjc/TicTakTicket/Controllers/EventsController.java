@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.urjc.TicTakTicket.Entities.Event;
@@ -18,11 +19,27 @@ public class EventsController {
 	@Autowired
 	private EventRepository eventR;
 
-	@RequestMapping("/events")
-	public String Load(Model model) {
+	@RequestMapping(value = {"/events","/events/{num}"})
+	public String Load(Model model, @PathVariable(required = false) String num) {
 		
-		Page<Event> events = eventR.findAll(PageRequest.of(0, 5));
+		int numPage = 0;
+		int paso = 5;
+		boolean prePageFlag = false;
+		if (num != null) {
+			numPage = Integer.parseInt(num);
+			if(numPage <= 0) {
+				numPage = 0;
+			} else {
+				prePageFlag = true;
+			}
+		}
+		Page<Event> events = eventR.findAll(PageRequest.of(numPage, paso));
 		
+		
+		model.addAttribute("actualPage", numPage);
+		model.addAttribute("prePageFlag",prePageFlag);
+		model.addAttribute("prePage", numPage-1);
+		model.addAttribute("nextPage", numPage+1);
 		model.addAttribute("events", events);
 		model.addAttribute("page_title", "Eventos");
 		
