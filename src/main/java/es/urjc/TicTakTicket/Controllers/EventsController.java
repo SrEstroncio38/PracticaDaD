@@ -1,7 +1,5 @@
 package es.urjc.TicTakTicket.Controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,7 +32,6 @@ public class EventsController {
 			}
 		}
 		Page<Event> events = eventR.findAll(PageRequest.of(numPage, paso));
-		
 		
 		model.addAttribute("actualPage", numPage);
 		model.addAttribute("prePageFlag",prePageFlag);

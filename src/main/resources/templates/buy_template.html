@@ -1,0 +1,194 @@
+{{> includes/header}}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+	<!-- Page Heading -->
+	<div class="col-12">
+		<div class="card shadow mb-4">
+			<!-- Card Header - Accordion -->
+			<a href="#collapseCardExample" class="d-block card-header py-3"
+				data-toggle="collapse" role="button" aria-expanded="true"
+				aria-controls="collapseCardExample">
+				<h6 class="m-0 font-weight-bold text-primary">Adquirir entradas</h6>
+			</a>
+			<!-- Card Content - Collapse -->
+			<div class="collapse show" id="collapseCardAddCard" style="">
+				<div class="card-body">
+					<form method='post' action='/pay'>
+						<div class="row">
+							<div class="col-12">
+								<p>Tarjeta a usar:</p>
+								<select name='selectedCard'
+									class="form-control form-control-user"> {{#cards}}
+									<option value="{{cardNumber}}">{{displayNumber}}</option>
+									{{/cards}}
+								</select>
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="row">
+							<div class="col-12">
+								<p>Tickets:</p>
+							</div>
+							{{#tickets}}
+							<a class="col-4 ticket-button" data-ticketid="{{-index}}" data-ticketname="{{name}}" data-ticketprice="{{price}}" style="cursor: pointer">
+								<div class="card border-left-primary shadow h-100 py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2">
+												<div
+													class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{name}}</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800">Precio:
+													{{price}} €</div>
+											</div>
+											<div class="col-auto">
+												<i class="fas fa-money-bill-alt fa-2x text-gray-300"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+							{{/tickets}}
+						</div>
+						
+						<hr>
+						
+						<div class="row" id="ticket-0" style="display: none">
+							<div class="col-12">
+								<p>[Ticket] Nombre de la persona:</p>
+							</div>
+							<div class="col-8">
+	            				<input type='text' name='person-0' class="form-control form-control-user inputname" placeholder="Nombre"/>
+	            				<input type='number' name='price-0' class="inputprice" hidden=""/>
+							</div>
+							<div class="col-4">
+								<div class="btn btn-danger btn-user btn-block delete-ticket" style="cursor: pointer" data-ticketid="0">
+									Eliminar
+								</div>
+							</div>
+						</div>
+						
+						<div class="row" id="ticket-1" style="display: none">
+							<div class="col-12">
+								<p>[Ticket] Nombre de la persona:</p>
+							</div>
+							<div class="col-8">
+	            				<input type='text' name='person-1' class="form-control form-control-user inputname" placeholder="Nombre"/>
+	            				<input type='number' name='price-1' class="inputprice" hidden=""/>
+							</div>
+							<div class="col-4">
+								<div class="btn btn-danger btn-user btn-block delete-ticket" style="cursor: pointer" data-ticketid="1">
+									Eliminar
+								</div>
+							</div>
+						</div>
+						
+						<div class="row" id="ticket-2" style="display: none">
+							<div class="col-12">
+								<p>[Ticket] Nombre de la persona:</p>
+							</div>
+							<div class="col-8">
+	            				<input type='text' name='person-2' class="form-control form-control-user inputname" placeholder="Nombre"/>
+	            				<input type='number' name='price-2' class="inputprice" hidden=""/>
+							</div>
+							<div class="col-4">
+								<div class="btn btn-danger btn-user btn-block delete-ticket" style="cursor: pointer" data-ticketid="2">
+									Eliminar
+								</div>
+							</div>
+						</div>
+						
+						<div class="row" id="ticket-3" style="display: none">
+							<div class="col-12">
+								<p>[Ticket] Nombre de la persona:</p>
+							</div>
+							<div class="col-8">
+	            				<input type='text' name='person-3' class="form-control form-control-user inputname" placeholder="Nombre"/>
+	            				<input type='number' name='price-3' class="inputprice" hidden=""/>
+							</div>
+							<div class="col-4">
+								<div class="btn btn-danger btn-user btn-block delete-ticket" style="cursor: pointer" data-ticketid="3">
+									Eliminar
+								</div>
+							</div>
+						</div>
+						
+						<div class="row" id="ticket-4" style="display: none">
+							<div class="col-12">
+								<p>[Ticket] Nombre de la persona:</p>
+							</div>
+							<div class="col-8">
+	            				<input type='text' name='person-4' class="form-control form-control-user inputname" placeholder="Nombre"/>
+	            				<input type='number' name='price-4' class="inputprice" hidden=""/>
+							</div>
+							<div class="col-4">
+								<div class="btn btn-danger btn-user btn-block delete-ticket" style="cursor: pointer" data-ticketid="4">
+									Eliminar
+								</div>
+							</div>
+						</div>
+
+						<hr>
+						
+						<p id="totalprice">Precio Total = 0.00 &euro;</p>
+						
+						<hr>
+
+						<div class="row">
+							<div class="col-4 offset-4" style="padding-top: 15px">
+								<input type="submit" value='Adquirir'
+									class="btn btn-primary btn-user btn-block" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- /.container-fluid -->
+
+{{> includes/footer}}
+
+<script>
+
+	$(".ticket-button").click(function() {
+		var ticketid = $(this).data("ticketid");
+		for (i=0; i<5; i++) {
+			var object = $("#ticket-"+i);
+			if(object.is(":hidden")) {
+				object.show();
+				var text = object.find("p")
+				text.html("[" + $(this).data("ticketname") + "] Nombre de la persona:");
+				var price = object.find(".inputprice");
+				price.val($(this).data("ticketprice"));
+				break;
+			}
+		}
+		updatePrice();
+	});
+	
+	$(".delete-ticket").click(function() {
+		var ticketid = $(this).data("ticketid");
+		var object = $("#ticket-"+ticketid);
+		object.hide();
+		object.find(".inputname").val("")
+		object.find(".inputprice").val("")
+		updatePrice();
+	});
+	
+	function updatePrice() {
+		var totalprice = 0;
+		$(".inputprice").each(function( index ) {
+			var money = parseFloat($(this).val())
+			if (!isNaN(money))
+				totalprice += money
+		});
+		$("#totalprice").html("Precio Total = " + totalprice.toFixed(2) + " &euro;");
+	}
+	
+</script>
