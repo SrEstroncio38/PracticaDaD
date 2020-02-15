@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Payment {
 	
+	private final int DISPLAYED_NUMBERS = 4;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -20,6 +22,7 @@ public class Payment {
 	
 	private String ownerName;
 	private String cardNumber;
+	private String displayNumber;
 	private Date expireDate;
 	private short cvv;
 	
@@ -31,6 +34,15 @@ public class Payment {
 		this.cardNumber = cardNumber;
 		this.expireDate = expireDate;
 		this.cvv = cvv;
+		
+		generateDisplayNumber();
+	}
+	
+	private void generateDisplayNumber() {
+		displayNumber = "";
+		for (int i = 0; i < cardNumber.length()-DISPLAYED_NUMBERS; i++)
+			displayNumber += "*";
+		displayNumber += cardNumber.substring(cardNumber.length()-DISPLAYED_NUMBERS,cardNumber.length());
 	}
 
 	public int getId() {
@@ -63,6 +75,11 @@ public class Payment {
 
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
+		generateDisplayNumber();
+	}
+	
+	public String getDisplayNumber() {
+		return displayNumber;
 	}
 
 	public Date getExpireDate() {
