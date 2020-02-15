@@ -7,19 +7,19 @@
 	<div class="col-12">
 		<div class="card shadow mb-4">
 			<!-- Card Header - Accordion -->
-			<a href="#collapseCardExample" class="d-block card-header py-3"
+			<a href="#collapseCardPayment" class="d-block card-header py-3"
 				data-toggle="collapse" role="button" aria-expanded="true"
 				aria-controls="collapseCardExample">
 				<h6 class="m-0 font-weight-bold text-primary">Pago</h6>
 			</a>
 			<!-- Card Content - Collapse -->
-			<div class="collapse show" id="collapseCardCreateEvent" style="">
+			<div class="collapse show" id="collapseCardPayment" style="">
 				<div class="card-body">
 				
 					{{#cards}}
 					<div class="row">
 						<div class="col-8">
-							{{displayNumber}}
+							<h6><strong>Tarjeta {{-index}}:</strong> {{displayNumber}}</h6>
 						</div>
 						<div class="col-4">
 							<form method='post' action='/deleteCard'>

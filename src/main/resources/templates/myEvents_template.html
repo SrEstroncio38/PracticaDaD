@@ -14,9 +14,27 @@
 		<!-- Card Content - Collapse -->
 		<div class="collapse" id="collapse{{-index}}" style="">
 			<div class="card-body">
-				<h4>
+			<div class="row">
+				<h4 class="col-12 col-md-4">
 					<strong>Creador del evento: </strong>{{user.username}}
 				</h4>
+				<div class="col-6 col-md-2 offset-md-4 text-right">
+					<a href="/deleteEvent/{{id}}" class="btn btn-danger btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-trash"></i>
+                    </span>
+                    <span class="text">Eliminar evento</span>
+                  </a>
+				</div>
+				<div class="col-6 col-md-2 text-right">
+					<a href="/addTicket/{{id}}" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-ticket-alt"></i>
+                    </span>
+                    <span class="text">Añadir ticket</span>
+                  </a>
+				</div>
+			</div>
 				<hr>
 				<h6>
 					<strong>Descripción del evento: </strong>
@@ -28,7 +46,7 @@
 				</h4>
 				<div class="row">
 				{{#tickets}}
-				<div class="col-4">
+				<div class="col-12 col-md-4">
 					<div class="card border-left-primary shadow h-100 py-2">
 						<div class="card-body">
 							<div class="row no-gutters align-items-center">
@@ -55,12 +73,12 @@
 	{{#prePageFlag}}
 	<div class="row">
 		<div class="col-2 text-left">
-		<a href="/events/{{prePage}}" class="btn btn-primary btn-circle btn-lg">
+		<a href="/myEvents/{{username}}/{{prePage}}" class="btn btn-primary btn-circle btn-lg">
                     <i class="fas fa-angle-left"></i>
                   </a>
 		</div>
 		<div class="col-2 offset-8 text-right">
-		<a href="/events/{{nextPage}}" class="btn btn-primary btn-circle btn-lg">
+		<a href="/myEvents/{{username}}/{{nextPage}}" class="btn btn-primary btn-circle btn-lg">
                     <i class="fas fa-angle-right"></i>
                   </a>
 		</div> 
@@ -69,7 +87,7 @@
 	{{^prePageFlag}}
 	<div class="row">
 		<div class="col-2 offset-10 text-right">
-		<a href="/events/{{nextPage}}" class="btn btn-primary btn-circle btn-lg">
+		<a href="/myEvents/{{username}}/{{nextPage}}" class="btn btn-primary btn-circle btn-lg">
                     <i class="fas fa-angle-right"></i>
                   </a>
 		</div> 
@@ -77,7 +95,7 @@
 	{{/prePageFlag}}
 	{{/eventFlag}}
 	{{^eventFlag}}
-	<h4>No hay eventos próximos</h4>
+	<h4>No has creado ningún evento</h4>
 	{{/eventFlag}}
 	
 	

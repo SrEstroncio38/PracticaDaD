@@ -67,10 +67,10 @@ public class CreateEventController {
 			
 			
 			Event event = new Event(eventUser, eventName, eventDesc);
-			eventR.save(event);
 			
 			float price = Float.parseFloat(ticketPrice);
 			Ticket ticket = new Ticket(price, ticketName, ticketDesc, event);
+			eventR.save(event);
 			ticketR.save(ticket);
 			
 			event.addTicket(ticket);

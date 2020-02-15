@@ -34,13 +34,17 @@ public class EventsController {
 			}
 		}
 		Page<Event> events = eventR.findAll(PageRequest.of(numPage, paso));
-		
+		boolean eventFlag = false;
+		if(!events.isEmpty()) {
+			eventFlag = true;
+		}
 		
 		model.addAttribute("actualPage", numPage);
 		model.addAttribute("prePageFlag",prePageFlag);
 		model.addAttribute("prePage", numPage-1);
 		model.addAttribute("nextPage", numPage+1);
 		model.addAttribute("events", events);
+		model.addAttribute("eventFlag", eventFlag);
 		model.addAttribute("page_title", "Eventos");
 		
 		return "events_template";
