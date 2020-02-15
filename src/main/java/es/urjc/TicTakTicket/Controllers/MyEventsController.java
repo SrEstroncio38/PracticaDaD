@@ -1,6 +1,7 @@
 package es.urjc.TicTakTicket.Controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,16 +13,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.urjc.TicTakTicket.Entities.Event;
 import es.urjc.TicTakTicket.Entities.EventRepository;
+import es.urjc.TicTakTicket.Entities.User;
+import es.urjc.TicTakTicket.Entities.UserRepository;
 
 @Controller
-public class EventsController {
+public class MyEventsController {
+	
+	User myUser;
 	
 	@Autowired
 	private EventRepository eventR;
+	
+	@Autowired
+	private UserRepository userR;
+	
 
-	@RequestMapping(value = {"/events","/events/{num}"})
-	public String Load(Model model, @PathVariable(required = false) String num) {
+	@RequestMapping(value = {"/myEvents","/myEvents/{username}/{num}","/myEvents/{username}"})
+	public String Load(Model model, @PathVariable(required = false) String num,
+			@PathVariable(required = false) String username) {
 		
+		if(username != null) {
+			Optional<User> user = userR.findById(username);
+			if (user.isPresent()) {
+				myUser = user.get();
+			} 
+		} else {
+			myUser = userR.findById("default").get();
+		}
 		int numPage = 0;
 		int paso = 5;
 		boolean prePageFlag = false;
@@ -33,7 +51,7 @@ public class EventsController {
 				prePageFlag = true;
 			}
 		}
-		Page<Event> events = eventR.findAll(PageRequest.of(numPage, paso));
+		Page<Event> events = eventR.findByUser(myUser,PageRequest.of(numPage, paso));
 		boolean eventFlag = false;
 		if(!events.isEmpty()) {
 			eventFlag = true;
@@ -45,10 +63,18 @@ public class EventsController {
 		model.addAttribute("nextPage", numPage+1);
 		model.addAttribute("events", events);
 		model.addAttribute("eventFlag", eventFlag);
-		model.addAttribute("page_title", "Eventos");
+		model.addAttribute("username", myUser.getUsername());
+		model.addAttribute("page_title", "Mis eventos");
 		
-		return "events_template";
+		return "myEvents_template";
 	}
 	
+	
+	@RequestMapping(value = {"/deleteEvent/{{id}}"})
+	public String Load(Model model, @PathVariable int id) {
+		
+		
+		return "myEvents_template";
+	}
 }
 
