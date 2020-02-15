@@ -22,9 +22,10 @@
 							{{displayNumber}}
 						</div>
 						<div class="col-4">
-						<a href="/" class="col-12 d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" style="">
-							<i class="fas fa-trash"></i>&emsp;Eliminar
-						</a>
+							<form method='post' action='/deleteCard'>
+							<input type="hidden" name="cardNumber" value={{cardNumber}} />
+							<input type="submit" value='Eliminar' class="btn btn-danger btn-user btn-block" />
+							</form>
 						</div>
 					</div>
 					<br>

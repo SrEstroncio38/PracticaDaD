@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.TicTakTicket.Entities.Payment;
 import es.urjc.TicTakTicket.Entities.PaymentRepository;
@@ -33,6 +35,14 @@ public class ProfileController {
 		model.addAttribute("page_title", "Perfil");
 		
 		return "user_template";
+	}
+	
+	@PostMapping("/deleteCard")
+	public String Submit(Model model, @RequestParam String cardNumber) {
+		
+		paymentR.delete(paymentR.findByCardNumber(cardNumber).get(0));
+		
+		return "redirect:/user";
 	}
 }
 
