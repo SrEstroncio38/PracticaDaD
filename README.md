@@ -72,7 +72,9 @@ Permite al usuario visualizar las entradas que ha adquirido.
 
 ### Diagrama de navegación ###
 
-Texto
+A continuación se presenta el diagrama de navegación que representa al usuario moviéndose por las diferentes vistas de la web.
+
+![Mis compras](./pictures/Diagrama_navegacion.png)
 
 ### Modelo de datos ###
 
