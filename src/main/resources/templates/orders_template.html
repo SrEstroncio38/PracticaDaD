@@ -9,7 +9,8 @@
 			class="d-block card-header py-3 collapsed" data-toggle="collapse"
 			role="button" aria-expanded="false"
 			aria-controls="collapseCardExample">
-			<h4 class="m-0 font-weight-bold text-primary">Recibo compra {{-index}}</h4>
+			<h4 class="m-0 font-weight-bold text-primary">Recibo compra
+				{{-index}}</h4>
 		</a>
 		<!-- Card Content - Collapse -->
 		<div class="collapse" id="collapse{{-index}}" style="">
@@ -46,10 +47,10 @@
 				</div>
 				<hr>
 				<h4>
-						<strong>Tickets: </strong>
-					</h4>
+					<strong>Tickets: </strong>
+				</h4>
 				<div class="row">
-					
+
 					{{#tickets}}
 					<div class="col-4">
 						<div class="card border-left-primary shadow h-100 py-2">
@@ -75,19 +76,21 @@
 				</div>
 				<hr>
 				<h4>
-						<strong>Nombres de cada Ticket: </strong>
+					<strong>Nombres de cada Ticket: </strong>
 				</h4>
-				<div class=row">
+
+				<div class="row">
+					{{#person1}}
 					<div class="col-4">
 						<div class="card border-left-primary shadow h-100 py-2">
 							<div class="card-header">
-								<h4>Ticket </h4>
+								<h4>Ticket</h4>
 							</div>
 							<div class="card-body">
 								<div class="row no-gutters align-items-center">
 									<div class="col mr-2">
 										<div class="h5 mb-0 font-weight-bold text-gray-800">Nombre:
-										</div>
+											{{person1}}</div>
 									</div>
 									<div class="col-auto">
 										<i class="fas fa-money-bill-alt fa-2x text-gray-300"></i>
@@ -96,8 +99,87 @@
 							</div>
 						</div>
 					</div>
+					{{/person1}} {{#person2}}
+					<div class="col-4">
+						<div class="card border-left-primary shadow h-100 py-2">
+							<div class="card-header">
+								<h4>Ticket</h4>
+							</div>
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col mr-2">
+										<div class="h5 mb-0 font-weight-bold text-gray-800">Nombre:
+											{{person2}}</div>
+									</div>
+									<div class="col-auto">
+										<i class="fas fa-money-bill-alt fa-2x text-gray-300"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{/person2}} {{#person3}}
+					<div class="col-4">
+						<div class="card border-left-primary shadow h-100 py-2">
+							<div class="card-header">
+								<h4>Ticket</h4>
+							</div>
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col mr-2">
+										<div class="h5 mb-0 font-weight-bold text-gray-800">Nombre:
+											{{person3}}</div>
+									</div>
+									<div class="col-auto">
+										<i class="fas fa-money-bill-alt fa-2x text-gray-300"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{/person3}} {{#person4}}
+					<div class="col-4">
+						<div class="card border-left-primary shadow h-100 py-2">
+							<div class="card-header">
+								<h4>Ticket</h4>
+							</div>
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col mr-2">
+										<div class="h5 mb-0 font-weight-bold text-gray-800">Nombre:
+											{{person4}}</div>
+									</div>
+									<div class="col-auto">
+										<i class="fas fa-money-bill-alt fa-2x text-gray-300"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{/person4}} {{#person5}}
+					<div class="col-4">
+						<div class="card border-left-primary shadow h-100 py-2">
+							<div class="card-header">
+								<h4>Ticket</h4>
+							</div>
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col mr-2">
+										<div class="h5 mb-0 font-weight-bold text-gray-800">Nombre:
+											{{person5}}</div>
+									</div>
+									<div class="col-auto">
+										<i class="fas fa-money-bill-alt fa-2x text-gray-300"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{/person5}}
 				</div>
-				
+
+
+
 			</div>
 		</div>
 	</div>

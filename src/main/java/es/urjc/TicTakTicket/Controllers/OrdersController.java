@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.urjc.TicTakTicket.Entities.Order;
@@ -27,7 +28,8 @@ public class OrdersController {
 	User myUser;
 
 	@RequestMapping(value = {"/orders","/orders/{username}/{num}","/orders/{username}"})
-	public String register(Model model, String username, String num) {
+	public String register(Model model, @PathVariable(required = false) String username, 
+			@PathVariable(required = false) String num) {
 		
 		if(username != null) {
 			Optional<User> user = userR.findById(username);
