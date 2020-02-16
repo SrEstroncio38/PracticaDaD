@@ -23,9 +23,6 @@ public class Ticket {
 	@ManyToOne
 	private Event event;
 	
-	@ManyToMany
-	private List<Order> orders = new ArrayList<Order>();
-	
 	
 	protected Ticket() {}
 	

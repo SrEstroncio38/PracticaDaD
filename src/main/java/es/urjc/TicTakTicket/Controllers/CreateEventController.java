@@ -32,16 +32,7 @@ public class CreateEventController {
 	private TicketRepository ticketR;
 	
 	User eventUser;
-	
-	@PostConstruct
-	public void init() {
-		User a = new User("default", "1234");
-		userR.save(a);
-		User b = new User("Ramon", "1234");
-		userR.save(b);
-	}
 
-	
 	
 	@RequestMapping(value = {"/createEvent","/createEvent/{username}"})
 	public String Load(Model model, @PathVariable(required = false) String username) {

@@ -15,8 +15,6 @@ public class User {
 	
 	private String password;
 	
-	@OneToMany
-	private List<Order> orders = new ArrayList<>();
 	
 	protected User() {}
 	
