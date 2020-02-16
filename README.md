@@ -35,7 +35,14 @@ Cuando el usuario adquiera una entrada, se enviará a este un correo con el pdf 
 
 ### Diseño de la página ###
 
-Texto
+#### Registarse (Pública) ####
+![Registrarse](./pictures/Registrarse.png)
+
+Desde esta página uno podrá registarse para poder iniciar sesión en futuras conexiones. De momento no tiene la funcionalidad implementada.
+
+#### Iniciar sesión (Pública) ####
+![Iniciar sesión](./pictures/Iniciar_sesion.png)
+Permite iniciar sesión para acceder a las funcionalidades privadas. De momento no tiene la funcionalidad implementada.
 
 ### Diagrama de navegación ###
 
@@ -43,6 +50,7 @@ Texto
 
 ### Modelo de datos ###
 
+A continuación se muestra como se ha implementado la relación entre las entidades principales y que métodos/atributos incorpora cada una de ellas.
 
 - **Modelo E/R** 
 
