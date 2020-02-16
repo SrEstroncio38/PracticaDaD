@@ -50,10 +50,10 @@ Permite iniciar sesión para acceder a las funcionalidades privadas. De momento 
 
 Desde esta página se podrán consultar los eventos disponibles junto con su información. En el supuesto de que el usuario haya iniciado sesión, podrá también adquirir las entradas.
 
-#### Adquirir entradas (Privada) ####
-![Adquirir entradas](./pictures/Comprar.PNG)
+#### Adquirir tickets (Privada) ####
+![Adquirir tickets](./pictures/Comprar.PNG)
 
-El usuario podrá elegir una tarjeta de pago, un máximo de 5 entradas para adquirir y los nombres de los usuarios de las entradas. Completar la adquisición genera una valor nuevo de "Order".
+El usuario podrá elegir una tarjeta de pago, un máximo de 5 tickets para adquirir y los nombres de los usuarios de los tickets. Completar la adquisición genera un valor nuevo de "Order".
 
 #### Perfil (Privada) ####
 ![Perfil](./pictures/Perfil.PNG)
@@ -65,10 +65,25 @@ Consulta las tarjetas de crédito asociadas a un usuario. Se pueden añadir o bo
 
 Accesible desde el perfil de usuario. Crea entradas nuevas de "Payment". Es necesario tener como mínimo una tarjeta para adquirir entradas.
 
-#### Mis compras (Privadas) ####
+#### Mis compras (Privada) ####
 ![Mis compras](./pictures/Mis_compras.PNG)
 
 Permite al usuario visualizar las entradas que ha adquirido.
+
+#### Mis eventos (Privada) ####
+![Mis eventos](./pictures/Mis_eventos.PNG)
+
+Similar a la página de "Eventos". Unicamente muestra los eventos que han sido creados por el usuario. No se pueden adquirir tickets desde aquí, pero te permite añadir tickets nuevos o eliminar el evento.
+
+#### Añadir ticket (Privada) ####
+![Añadir ticket](./pictures/Anadir_ticket.PNG)
+
+Genera un nuevo tipo de ticket para un evento preexistente.
+
+#### Crear evento (Privada) ####
+![Crear evento](./pictures/Crear_evento.PNG)
+
+Solicita los datos necesarios para generar un nuevo evento visible para todos los usuarios. También es necesaario crear un ticket que acompañe al evento.
 
 ### Diagrama de navegación ###
 
@@ -78,7 +93,7 @@ A continuación se presenta el diagrama de navegación que representa al usuario
 
 ### Modelo de datos ###
 
-A continuación se muestra como se ha implementado la relación entre las entidades principales y que métodos/atributos incorpora cada una de ellas.
+Por último, se muestra como se ha implementado la relación entre las entidades principales y que métodos/atributos incorpora cada una de ellas.
 
 - **Modelo E/R** 
 
