@@ -44,11 +44,7 @@ public class Order {
 			this.tickets.add(t);
 			this.totalPrice += t.getPrice();
 		}
-		person1 = names.get(0);
-		person2 = names.get(1);
-		person3 = names.get(2);
-		person4 = names.get(3);
-		person5 = names.get(4);
+		setNames(names);
 	}
 
 	public int getId() {
@@ -77,12 +73,18 @@ public class Order {
 		return names;
 	}
 
-	public void setNames(ArrayList<String> names) {
-		person1 = names.get(0);
-		person2 = names.get(1);
-		person3 = names.get(2);
-		person4 = names.get(3);
-		person5 = names.get(4);
+	public void setNames(List<String> names) {
+		int idx = names.size();
+		if (idx > 0)
+			person1 = names.get(0);
+		if (idx > 1)
+			person2 = names.get(1);
+		if (idx > 2)
+			person3 = names.get(2);
+		if (idx > 3)
+			person4 = names.get(3);
+		if (idx > 4)
+			person5 = names.get(4);
 	}
 
 	public List<Ticket> getTickets() {
