@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.urjc.TicTakTicket.Entities.Event;
 import es.urjc.TicTakTicket.Entities.EventRepository;
+import es.urjc.TicTakTicket.Entities.Order;
+import es.urjc.TicTakTicket.Entities.OrderRepository;
+import es.urjc.TicTakTicket.Entities.Ticket;
 import es.urjc.TicTakTicket.Entities.TicketRepository;
 import es.urjc.TicTakTicket.Entities.User;
 import es.urjc.TicTakTicket.Entities.UserRepository;
@@ -30,6 +33,9 @@ public class MyEventsController {
 	
 	@Autowired
 	private TicketRepository ticketR;
+	
+	@Autowired
+	private OrderRepository orderR;
 	
 
 	@RequestMapping(value = {"/myEvents","/myEvents/{username}/{num}","/myEvents/{username}"})
@@ -81,6 +87,14 @@ public class MyEventsController {
 		//TODO cuando haya login comprobar que el usuario logeado coincide con el del evento
 		Optional<Event> eventToDelete = eventR.findById(intId);
 		if(eventToDelete.isPresent()) {
+			Event event = eventToDelete.get();
+			for (Ticket t : event.getTickets()) {
+				List<Order> orders = orderR.findByTickets(t);
+				for (Order o : orders) {
+					orderR.delete(o);
+				}
+			}
+			
 			eventR.delete(eventToDelete.get());
 		}
 		

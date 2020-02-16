@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DashboardController {
 
-	@RequestMapping("/")
+	@RequestMapping("/dashboard")
 	public String Load(Model model) {
 		
 		model.addAttribute("page_title", "Inicio");

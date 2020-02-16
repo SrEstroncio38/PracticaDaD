@@ -17,7 +17,7 @@ public class EventsController {
 	@Autowired
 	private EventRepository eventR;
 
-	@RequestMapping(value = {"/events","/events/{num}"})
+	@RequestMapping(value = {"/","/events","/events/{num}"})
 	public String Load(Model model, @PathVariable(required = false) String num) {
 		
 		int numPage = 0;

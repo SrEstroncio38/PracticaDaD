@@ -24,7 +24,7 @@ public class Ticket {
 	@ManyToOne
 	private Event event;
 	
-	@ManyToMany(cascade = CascadeType.REMOVE)
+	@ManyToMany
 	private List<Order> orders = new ArrayList<Order>();
 	
 	

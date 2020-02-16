@@ -1,0 +1,138 @@
+{{> includes/header}}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+	{{#orders}}
+	<div class="card shadow mb-4">
+		<!-- Card Header - Accordion -->
+		<a href="#collapse{{-index}}"
+			class="d-block card-header py-3 collapsed" data-toggle="collapse"
+			role="button" aria-expanded="false"
+			aria-controls="collapseCardExample">
+			<h4 class="m-0 font-weight-bold text-primary">Recibo compra {{-index}}</h4>
+		</a>
+		<!-- Card Content - Collapse -->
+		<div class="collapse" id="collapse{{-index}}" style="">
+			<div class="card-body">
+				<h4>
+					<strong>Compra realizada por: </strong>{{name}}
+				</h4>
+				<hr>
+				<h4>
+					<strong>Identificador de compra: {{id}}</strong>
+				</h4>
+				<hr>
+				<h4>
+					<strong>Tarjeta de compra: </strong>
+				</h4>
+				<div class="row">
+					<div class="col-4">
+						<div class="card border-left-primary shadow h-100 py-2">
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col mr-2">
+										<div
+											class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tarjeta</div>
+										<div class="h5 mb-0 font-weight-bold text-gray-800">
+											{{displayNumber}}</div>
+									</div>
+									<div class="col-auto">
+										<i class="fas fa-credit-card fa-2x text-gray-300"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<h4>
+						<strong>Tickets: </strong>
+					</h4>
+				<div class="row">
+					
+					{{#tickets}}
+					<div class="col-4">
+						<div class="card border-left-primary shadow h-100 py-2">
+							<div class="card-header">
+								<h4>Ticket {{-index}}</h4>
+							</div>
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col mr-2">
+										<div
+											class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{name}}</div>
+										<div class="h5 mb-0 font-weight-bold text-gray-800">Precio:
+											{{price}} €</div>
+									</div>
+									<div class="col-auto">
+										<i class="fas fa-money-bill-alt fa-2x text-gray-300"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{/tickets}}
+				</div>
+				<hr>
+				<h4>
+						<strong>Nombres de cada Ticket: </strong>
+				</h4>
+				<div class=row">
+					{{#names}}
+					<div class="col-4">
+						<div class="card border-left-primary shadow h-100 py-2">
+							<div class="card-header">
+								<h4>Ticket </h4>
+							</div>
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col mr-2">
+										<div class="h5 mb-0 font-weight-bold text-gray-800">Nombre:
+											{{.}}</div>
+									</div>
+									<div class="col-auto">
+										<i class="fas fa-money-bill-alt fa-2x text-gray-300"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{/names}}
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	{{/orders}} {{#orderFlag}} {{#prePageFlag}}
+	<div class="row">
+		<div class="col-2 text-left">
+			<a href="/orders/{{name}}/{{prePage}}"
+				class="btn btn-primary btn-circle btn-lg"> <i
+				class="fas fa-angle-left"></i>
+			</a>
+		</div>
+		<div class="col-2 offset-8 text-right">
+			<a href="/orders/{{name}}/{{nextPage}}"
+				class="btn btn-primary btn-circle btn-lg"> <i
+				class="fas fa-angle-right"></i>
+			</a>
+		</div>
+	</div>
+	{{/prePageFlag}} {{^prePageFlag}}
+	<div class="row">
+		<div class="col-2 offset-10 text-right">
+			<a href="/orders/{{name}}/{{nextPage}}"
+				class="btn btn-primary btn-circle btn-lg"> <i
+				class="fas fa-angle-right"></i>
+			</a>
+		</div>
+	</div>
+	{{/prePageFlag}} {{/orderFlag}} {{^orderFlag}}
+	<h4>No has realizado ninguna compra</h4>
+	{{/orderFlag}}
+
+</div>
+<!-- /.container-fluid -->
+
+{{> includes/footer}}

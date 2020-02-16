@@ -71,7 +71,10 @@ public class BuyController {
 		
 		if(selectedCard != "" && selectedCard != null) {
 			
-			// Imaginate que te cobro aqui de la tarjeta
+			String displayNumber = "";
+			for (int i = 0; i < selectedCard.length()-4; i++)
+				displayNumber += "*";
+			displayNumber += selectedCard.substring(selectedCard.length()-4,selectedCard.length());
 			
 			List<String> names = new ArrayList<String>();
 			List<Ticket> tickets = new ArrayList<Ticket>();
@@ -106,7 +109,7 @@ public class BuyController {
 				tickets.add(ticket);
 			}
 			
-			Order order = new Order(names, tickets, currentUser);
+			Order order = new Order(names, tickets, currentUser, displayNumber);
 			
 			orderR.save(order);
 			
@@ -119,6 +122,6 @@ public class BuyController {
 		}
 		
 	}
-	
+
 }
 

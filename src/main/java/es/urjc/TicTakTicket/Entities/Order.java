@@ -19,6 +19,7 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	private String displayNumber;
 	
 	private float totalPrice;
 	@Embedded
@@ -32,8 +33,9 @@ public class Order {
 	
 	protected Order() {}
 	
-	public Order(List<String> names, List<Ticket> tickets, User user) {
+	public Order(List<String> names, List<Ticket> tickets, User user, String number) {
 		this.user = user;
+		this.displayNumber = number;
 		for (Ticket t : tickets) {
 			this.tickets.add(t);
 			this.totalPrice += t.getPrice();
