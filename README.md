@@ -36,37 +36,37 @@ Cuando el usuario adquiera una entrada, se enviará a este un correo con el pdf 
 ### Diseño de la página ###
 
 #### Registarse (Pública) ####
-![Registrarse](./pictures/Registrarse.png)
+![Registrarse](./pictures/Registrarse.PNG)
 
 Desde esta página uno podrá registarse para poder iniciar sesión en futuras conexiones. De momento no tiene la funcionalidad implementada.
 
 #### Iniciar sesión (Pública) ####
-![Iniciar sesión](./pictures/Iniciar_sesion.png)
+![Iniciar sesión](./pictures/Iniciar_sesion.PNG)
 
 Permite iniciar sesión para acceder a las funcionalidades privadas. De momento no tiene la funcionalidad implementada.
 
 #### Inicio (Pública) ####
-![Inicio](./pictures/Inicio.png)
+![Inicio](./pictures/Inicio.PNG)
 
 Desde esta página se podrán consultar los eventos disponibles junto con su información. En el supuesto de que el usuario haya iniciado sesión, podrá también adquirir las entradas.
 
 #### Adquirir entradas (Privada) ####
-![Adquirir entradas](./pictures/Comprar.png)
+![Adquirir entradas](./pictures/Comprar.PNG)
 
 El usuario podrá elegir una tarjeta de pago, un máximo de 5 entradas para adquirir y los nombres de los usuarios de las entradas. Completar la adquisición genera una valor nuevo de "Order".
 
 #### Perfil (Privada) ####
-![Perfil](./pictures/Perfil.png)
+![Perfil](./pictures/Perfil.PNG)
 
 Consulta las tarjetas de crédito asociadas a un usuario. Se pueden añadir o borrar tarjetas a elección de este.
 
 #### Añadir tarjeta (Privada) ####
-![Añadir tarjeta](./pictures/Anadir_tarjeta.png)
+![Añadir tarjeta](./pictures/Anadir_tarjeta.PNG)
 
 Accesible desde el perfil de usuario. Crea entradas nuevas de "Payment". Es necesario tener como mínimo una tarjeta para adquirir entradas.
 
 #### Mis compras (Privadas) ####
-![Mis compras](./pictures/Mis_compras.png)
+![Mis compras](./pictures/Mis_compras.PNG)
 
 Permite al usuario visualizar las entradas que ha adquirido.
 
