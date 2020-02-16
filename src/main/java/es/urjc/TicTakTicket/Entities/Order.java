@@ -22,11 +22,15 @@ public class Order {
 	private String displayNumber;
 	
 	private float totalPrice;
-	@Embedded
-	private List<String> names = new ArrayList<>();
 	
 	@ManyToMany
 	private List<Ticket> tickets = new ArrayList<>();
+	
+	private String person1;
+	private String person2;
+	private String person3;
+	private String person4;
+	private String person5;
 	
 	@ManyToOne
 	private User user;
@@ -40,9 +44,11 @@ public class Order {
 			this.tickets.add(t);
 			this.totalPrice += t.getPrice();
 		}
-		for (String n : names) {
-			this.names.add(n);
-		}
+		person1 = names.get(0);
+		person2 = names.get(1);
+		person3 = names.get(2);
+		person4 = names.get(3);
+		person5 = names.get(4);
 	}
 
 	public int getId() {
@@ -62,11 +68,21 @@ public class Order {
 	}
 
 	public List<String> getNames() {
+		List<String> names = new ArrayList<String>();
+		names.add(person1);
+		names.add(person2);
+		names.add(person3);
+		names.add(person4);
+		names.add(person5);
 		return names;
 	}
 
 	public void setNames(ArrayList<String> names) {
-		this.names = names;
+		person1 = names.get(0);
+		person2 = names.get(1);
+		person3 = names.get(2);
+		person4 = names.get(3);
+		person5 = names.get(4);
 	}
 
 	public List<Ticket> getTickets() {

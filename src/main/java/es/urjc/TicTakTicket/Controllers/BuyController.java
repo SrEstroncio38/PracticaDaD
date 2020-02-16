@@ -40,7 +40,7 @@ public class BuyController {
 	@Autowired
 	private UserRepository userR;
 
-	@RequestMapping(value = {"buy/{id}"})
+	@RequestMapping(value = {"/buy/{id}"})
 	public String Load(Model model, @PathVariable(required = true) int id) {
 		
 		Event event = eventR.findById(id).get();
@@ -66,6 +66,8 @@ public class BuyController {
 			@RequestParam String person_3, @RequestParam String price_3, @RequestParam String tickettype_3,
 			@RequestParam String person_4, @RequestParam String price_4, @RequestParam String tickettype_4
 			) {
+		
+		System.out.println("conseguido");
 		
 		User currentUser = userR.findById("default").get();
 		
@@ -109,11 +111,12 @@ public class BuyController {
 				tickets.add(ticket);
 			}
 			
-			Order order = new Order(names, tickets, currentUser, displayNumber);
-			
-			orderR.save(order);
-			
-			return "redirect:/events";
+			if (!tickets.isEmpty()) {
+				Order order = new Order(names, tickets, currentUser, displayNumber);
+				orderR.save(order);
+				return "redirect:/events";
+			}
+			return "redirect:/user";
 			
 		} else {
 			

@@ -16,7 +16,6 @@ import es.urjc.TicTakTicket.Entities.EventRepository;
 import es.urjc.TicTakTicket.Entities.Order;
 import es.urjc.TicTakTicket.Entities.OrderRepository;
 import es.urjc.TicTakTicket.Entities.Ticket;
-import es.urjc.TicTakTicket.Entities.TicketRepository;
 import es.urjc.TicTakTicket.Entities.User;
 import es.urjc.TicTakTicket.Entities.UserRepository;
 
@@ -30,9 +29,6 @@ public class MyEventsController {
 	
 	@Autowired
 	private UserRepository userR;
-	
-	@Autowired
-	private TicketRepository ticketR;
 	
 	@Autowired
 	private OrderRepository orderR;

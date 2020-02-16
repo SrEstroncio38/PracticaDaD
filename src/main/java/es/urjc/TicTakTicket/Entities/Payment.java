@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Payment {
 	
-	private final int DISPLAYED_NUMBERS = 4;
+	private static final int DISPLAYED_NUMBERS = 4;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

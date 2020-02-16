@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import es.urjc.TicTakTicket.Entities.Event;
 import es.urjc.TicTakTicket.Entities.Order;
 import es.urjc.TicTakTicket.Entities.OrderRepository;
 import es.urjc.TicTakTicket.Entities.User;
