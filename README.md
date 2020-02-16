@@ -42,7 +42,33 @@ Desde esta página uno podrá registarse para poder iniciar sesión en futuras c
 
 #### Iniciar sesión (Pública) ####
 ![Iniciar sesión](./pictures/Iniciar_sesion.png)
+
 Permite iniciar sesión para acceder a las funcionalidades privadas. De momento no tiene la funcionalidad implementada.
+
+#### Inicio (Pública) ####
+![Inicio](./pictures/Inicio.png)
+
+Desde esta página se podrán consultar los eventos disponibles junto con su información. En el supuesto de que el usuario haya iniciado sesión, podrá también adquirir las entradas.
+
+#### Adquirir entradas (Privada) ####
+![Adquirir entradas](./pictures/Comprar.png)
+
+El usuario podrá elegir una tarjeta de pago, un máximo de 5 entradas para adquirir y los nombres de los usuarios de las entradas. Completar la adquisición genera una valor nuevo de "Order".
+
+#### Perfil (Privada) ####
+![Perfil](./pictures/Perfil.png)
+
+Consulta las tarjetas de crédito asociadas a un usuario. Se pueden añadir o borrar tarjetas a elección de este.
+
+#### Añadir tarjeta (Privada) ####
+![Añadir tarjeta](./pictures/Anadir_tarjeta.png)
+
+Accesible desde el perfil de usuario. Crea entradas nuevas de "Payment". Es necesario tener como mínimo una tarjeta para adquirir entradas.
+
+#### Mis compras (Privadas) ####
+![Mis compras](./pictures/Mis_compras.png)
+
+Permite al usuario visualizar las entradas que ha adquirido.
 
 ### Diagrama de navegación ###
 
