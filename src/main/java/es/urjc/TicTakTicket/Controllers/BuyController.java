@@ -60,11 +60,11 @@ public class BuyController {
 	
 	@PostMapping("/pay")
 	public String Submit(Model model, @RequestParam(required = false) String selectedCard,
-			@RequestParam String person_0, @RequestParam String price_0, @RequestParam String tickettype_0,
-			@RequestParam String person_1, @RequestParam String price_1, @RequestParam String tickettype_1,
-			@RequestParam String person_2, @RequestParam String price_2, @RequestParam String tickettype_2,
-			@RequestParam String person_3, @RequestParam String price_3, @RequestParam String tickettype_3,
-			@RequestParam String person_4, @RequestParam String price_4, @RequestParam String tickettype_4
+			@RequestParam String person_0, @RequestParam String tickettype_0,
+			@RequestParam String person_1, @RequestParam String tickettype_1,
+			@RequestParam String person_2, @RequestParam String tickettype_2,
+			@RequestParam String person_3, @RequestParam String tickettype_3,
+			@RequestParam String person_4, @RequestParam String tickettype_4
 			) {
 		
 		System.out.println("conseguido");
@@ -81,31 +81,31 @@ public class BuyController {
 			List<String> names = new ArrayList<String>();
 			List<Ticket> tickets = new ArrayList<Ticket>();
 			
-			if (person_0 != "") {
+			if (!tickettype_0.equals("none")) {
 				names.add(person_0);
 				Ticket ticket = ticketR.findById(Integer.parseInt(tickettype_0)).get();
 				tickets.add(ticket);
 			}
 			
-			if (person_1 != "") {
+			if (!tickettype_1.equals("none")) {
 				names.add(person_1);
 				Ticket ticket = ticketR.findById(Integer.parseInt(tickettype_1)).get();
 				tickets.add(ticket);
 			}
 			
-			if (person_2 != "") {
+			if (!tickettype_2.equals("none")) {
 				names.add(person_2);
 				Ticket ticket = ticketR.findById(Integer.parseInt(tickettype_2)).get();
 				tickets.add(ticket);
 			}
 			
-			if (person_3 != "") {
+			if (!tickettype_3.equals("none")) {
 				names.add(person_3);
 				Ticket ticket = ticketR.findById(Integer.parseInt(tickettype_3)).get();
 				tickets.add(ticket);
 			}
 			
-			if (person_4 != "") {
+			if (!tickettype_4.equals("none")) {
 				names.add(person_4);
 				Ticket ticket = ticketR.findById(Integer.parseInt(tickettype_4)).get();
 				tickets.add(ticket);
