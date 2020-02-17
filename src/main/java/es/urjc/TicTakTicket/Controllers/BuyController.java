@@ -67,8 +67,6 @@ public class BuyController {
 			@RequestParam String person_4, @RequestParam String tickettype_4
 			) {
 		
-		System.out.println("conseguido");
-		
 		User currentUser = userR.findById("default").get();
 		
 		if(selectedCard != "" && selectedCard != null) {
@@ -81,31 +79,31 @@ public class BuyController {
 			List<String> names = new ArrayList<String>();
 			List<Ticket> tickets = new ArrayList<Ticket>();
 			
-			if (!tickettype_0.equals("none")) {
+			if (!tickettype_0.equals("none") && !person_0.equals("")) {
 				names.add(person_0);
 				Ticket ticket = ticketR.findById(Integer.parseInt(tickettype_0)).get();
 				tickets.add(ticket);
 			}
 			
-			if (!tickettype_1.equals("none")) {
+			if (!tickettype_1.equals("none") && !person_1.equals("")) {
 				names.add(person_1);
 				Ticket ticket = ticketR.findById(Integer.parseInt(tickettype_1)).get();
 				tickets.add(ticket);
 			}
 			
-			if (!tickettype_2.equals("none")) {
+			if (!tickettype_2.equals("none") && !person_2.equals("")) {
 				names.add(person_2);
 				Ticket ticket = ticketR.findById(Integer.parseInt(tickettype_2)).get();
 				tickets.add(ticket);
 			}
 			
-			if (!tickettype_3.equals("none")) {
+			if (!tickettype_3.equals("none") && !person_3.equals("")) {
 				names.add(person_3);
 				Ticket ticket = ticketR.findById(Integer.parseInt(tickettype_3)).get();
 				tickets.add(ticket);
 			}
 			
-			if (!tickettype_4.equals("none")) {
+			if (!tickettype_4.equals("none") && !person_4.equals("")) {
 				names.add(person_4);
 				Ticket ticket = ticketR.findById(Integer.parseInt(tickettype_4)).get();
 				tickets.add(ticket);
@@ -116,13 +114,8 @@ public class BuyController {
 				orderR.save(order);
 				return "redirect:/events";
 			}
-			return "redirect:/user";
-			
-		} else {
-			
-			return "redirect:/user";
-			
 		}
+		return "redirect:/events";
 		
 	}
 

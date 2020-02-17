@@ -38,9 +38,9 @@
 							</div>
 							<div class="col-4">
 								<select name="tickettype_0" class="form-control form-control-user">
-									<option value="none">Ninguna</option>
+									<option value="none" data-price="0">Ninguna</option>
 									{{#tickets}}
-									<option value="{{id}}">{{name}}</option>
+									<option value="{{id}}" data-price="{{price}}">{{name}}</option>
 									{{/tickets}}
 								</select>
 							</div>
@@ -55,9 +55,9 @@
 							</div>
 							<div class="col-4">
 								<select name="tickettype_1" class="form-control form-control-user">
-									<option value="none">Ninguna</option>
+									<option value="none" data-price="0">Ninguna</option>
 									{{#tickets}}
-									<option value="{{id}}">{{name}}</option>
+									<option value="{{id}}" data-price="{{price}}">{{name}}</option>
 									{{/tickets}}
 								</select>
 							</div>
@@ -72,9 +72,9 @@
 							</div>
 							<div class="col-4">
 								<select name="tickettype_2" class="form-control form-control-user">
-									<option value="none">Ninguna</option>
+									<option value="none" data-price="0">Ninguna</option>
 									{{#tickets}}
-									<option value="{{id}}">{{name}}</option>
+									<option value="{{id}}" data-price="{{price}}">{{name}}</option>
 									{{/tickets}}
 								</select>
 							</div>
@@ -89,9 +89,9 @@
 							</div>
 							<div class="col-4">
 								<select name="tickettype_3" class="form-control form-control-user">
-									<option value="none">Ninguna</option>
+									<option value="none" data-price="0">Ninguna</option>
 									{{#tickets}}
-									<option value="{{id}}">{{name}}</option>
+									<option value="{{id}}" data-price="{{price}}">{{name}}</option>
 									{{/tickets}}
 								</select>
 							</div>
@@ -106,9 +106,9 @@
 							</div>
 							<div class="col-4">
 								<select name="tickettype_4" class="form-control form-control-user">
-									<option value="none">Ninguna</option>
+									<option value="none" data-price="0">Ninguna</option>
 									{{#tickets}}
-									<option value="{{id}}">{{name}}</option>
+									<option value="{{id}}" data-price="{{price}}">{{name}}</option>
 									{{/tickets}}
 								</select>
 							</div>
@@ -135,3 +135,19 @@
 <!-- /.container-fluid -->
 
 {{> includes/footer}}
+
+<script>
+
+	$("select").change(function () {
+		var totalprice = 0;
+		$("select option").each(function(){
+			if ($(this).is(":selected")) {
+				var price = parseFloat($(this).data("price"));
+				if (!isNaN(price))
+					totalprice += price;
+			}
+		});
+		$("#totalprice").html("Precio Total = " + totalprice.toFixed(2) +" &euro;");
+	});
+
+</script>
