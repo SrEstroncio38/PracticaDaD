@@ -1,10 +1,12 @@
 package es.urjc.TicTakTicket.Controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,11 +24,20 @@ public class ProfileController {
 	
 	@Autowired
 	private UserRepository userR;
-
-	@RequestMapping("/user")
-	public String register(Model model) {
+	
+	User currentUser;
+	
+	@RequestMapping(value = {"/user","/user/{username}"})
+	public String register(Model model, @PathVariable(required = false) String username) {
 		
-		User currentUser = userR.findById("default").get();
+		if(username != null) {
+			Optional<User> user = userR.findById(username);
+			if (user.isPresent()) {
+				currentUser = user.get();
+			} 
+		} else {
+			currentUser = userR.findById("default").get();
+		}
 		
 		List<Payment> payments = paymentR.findByUser(currentUser);
 		
