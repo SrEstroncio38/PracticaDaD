@@ -132,6 +132,15 @@
                   <i class="fas fa-calendar-plus fa-sm fa-fw mr-2 text-gray-400"></i>
                   Crear evento
                 </a>
+                {{#token}}
+                <form action="/logout" method="post">
+                	<button type="submit" class="dropdown-item">
+	                	<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+	                  	Cerrar Sesión
+                	</button>
+                	<input type="hidden" name="_csrf" value="{{token}}"/>
+                </form>
+                {{/token}}
                 <!--<div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

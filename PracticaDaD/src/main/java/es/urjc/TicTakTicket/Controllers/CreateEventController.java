@@ -1,14 +1,13 @@
 package es.urjc.TicTakTicket.Controllers;
 
 import java.security.Principal;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,20 +34,17 @@ public class CreateEventController {
 	User eventUser;
 
 	
-	@RequestMapping(value = {"/createEvent","/createEvent/{username}"})
-	public String Load(Model model, @PathVariable(required = false) String username, HttpServletRequest request) {
-		if (username != null) {
-			Optional<User> user = userR.findById(username);
-			if (user.isPresent()) {
-				eventUser = user.get();
-			} 
-		} else {
-			eventUser = userR.findById("default").get();
-		}
+	@RequestMapping(value = {"/createEvent"})
+	public String Load(Model model, HttpServletRequest request) {
 		
 		Principal currentUser = request.getUserPrincipal();
 		if (currentUser != null)
 			model.addAttribute("loggedUser", currentUser.getName());
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+		
+		eventUser = userR.findById(currentUser.getName()).get();
 		
 		model.addAttribute("page_title", "Crear Evento");
 		
@@ -79,8 +75,6 @@ public class CreateEventController {
 			
 		}
 		
-		}
-	
-	
+	}
 	
 }

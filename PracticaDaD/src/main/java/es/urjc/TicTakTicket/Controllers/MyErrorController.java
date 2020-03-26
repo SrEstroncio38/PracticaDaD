@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,9 @@ public class MyErrorController implements ErrorController {
 		Principal currentUser = request.getUserPrincipal();
 		if (currentUser != null)
 			model.addAttribute("loggedUser", currentUser.getName());
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
 		
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 	     

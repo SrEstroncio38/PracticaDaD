@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +32,7 @@ public class EventsController {
 	@PostConstruct
 	public void init() {
 		User a = new User("default", "1234");
-		User b = new User("default2", "{noop}1234");
 		userR.save(a);
-		userR.save(b);
 	}
 
 	@GetMapping(value = {"/","/events","/events/{num}"})
@@ -60,6 +59,9 @@ public class EventsController {
 		Principal currentUser = request.getUserPrincipal();
 		if (currentUser != null)
 			model.addAttribute("loggedUser", currentUser.getName());
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
 		
 		model.addAttribute("actualPage", numPage);
 		model.addAttribute("prePageFlag",prePageFlag);
