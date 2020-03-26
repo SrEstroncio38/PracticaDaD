@@ -37,7 +37,9 @@ public class AddTicketController {
 		if (currentUser != null)
 			model.addAttribute("loggedUser", currentUser.getName());
 		
-		//TODO cuando haya login comprobar que el usuario logeado coincide con el del evento
+		if (!checkUser(eventId, currentUser.getName()))
+			return "redirect:/myEvents";
+		
 		model.addAttribute("eventId", eventId);
 		model.addAttribute("page_title", "Añadir Ticket");
 		return "addTicket_template";
@@ -46,10 +48,15 @@ public class AddTicketController {
 	
 	@PostMapping(value = {"/addTicket/{id}"})
 	public String addTicket(Model model, @PathVariable(required = false) String id,
-			@RequestParam String ticketName,  @RequestParam String ticketPrice, @RequestParam String ticketDesc) {
+			@RequestParam String ticketName,  @RequestParam String ticketPrice, @RequestParam String ticketDesc,
+			HttpServletRequest request) {
 		
 		int eventId = Integer.parseInt(id);
-		//TODO cuando haya login comprobar que el usuario logeado coincide con el del evento
+
+		Principal currentUser = request.getUserPrincipal();
+		if (!checkUser(eventId,currentUser.getName()))
+			return "redirect:/myEvents";
+		
 		Optional<Event> eventToAdd = eventR.findById(eventId);
 		if(eventToAdd.isPresent()) {
 			Event eA = eventToAdd.get();
@@ -68,5 +75,9 @@ public class AddTicketController {
 		
 		return "redirect:/myEvents";
 		
+	}
+	
+	public boolean checkUser (int id, String username) {
+		return eventR.findById(id).get().getUser().getUsername().equals(username);
 	}
 }
