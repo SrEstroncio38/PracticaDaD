@@ -1,6 +1,9 @@
 package es.urjc.TicTakTicket.Controllers;
 
+import java.security.Principal;
+
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,7 +37,7 @@ public class EventsController {
 	}
 
 	@GetMapping(value = {"/","/events","/events/{num}"})
-	public String Load(Model model, @PathVariable(required = false) String num) {
+	public String Load(Model model, @PathVariable(required = false) String num, HttpServletRequest request) {
 		
 		int numPage = 0;
 		int paso = 5;
@@ -54,6 +57,9 @@ public class EventsController {
 			eventFlag = true;
 		}
 
+		Principal currentUser = request.getUserPrincipal();
+		if (currentUser != null)
+			model.addAttribute("loggedUser", currentUser.getName());
 		
 		model.addAttribute("actualPage", numPage);
 		model.addAttribute("prePageFlag",prePageFlag);

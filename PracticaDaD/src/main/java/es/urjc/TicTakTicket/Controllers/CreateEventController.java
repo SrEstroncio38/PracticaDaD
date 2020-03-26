@@ -1,6 +1,9 @@
 package es.urjc.TicTakTicket.Controllers;
 
+import java.security.Principal;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +36,7 @@ public class CreateEventController {
 
 	
 	@RequestMapping(value = {"/createEvent","/createEvent/{username}"})
-	public String Load(Model model, @PathVariable(required = false) String username) {
+	public String Load(Model model, @PathVariable(required = false) String username, HttpServletRequest request) {
 		if (username != null) {
 			Optional<User> user = userR.findById(username);
 			if (user.isPresent()) {
@@ -42,6 +45,10 @@ public class CreateEventController {
 		} else {
 			eventUser = userR.findById("default").get();
 		}
+		
+		Principal currentUser = request.getUserPrincipal();
+		if (currentUser != null)
+			model.addAttribute("loggedUser", currentUser.getName());
 		
 		model.addAttribute("page_title", "Crear Evento");
 		

@@ -1,5 +1,7 @@
 package es.urjc.TicTakTicket.Controllers;
 
+import java.security.Principal;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +16,10 @@ public class MyErrorController implements ErrorController {
 	
 	@RequestMapping("/error")
 	public String handleError(Model model, HttpServletRequest request) {
+		
+		Principal currentUser = request.getUserPrincipal();
+		if (currentUser != null)
+			model.addAttribute("loggedUser", currentUser.getName());
 		
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 	     

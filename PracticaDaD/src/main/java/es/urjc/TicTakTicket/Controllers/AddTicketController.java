@@ -1,6 +1,9 @@
 package es.urjc.TicTakTicket.Controllers;
 
+import java.security.Principal;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +29,14 @@ public class AddTicketController {
 	private TicketRepository ticketR;
 	
 	@RequestMapping(value = {"/addTicket/{id}"})
-	public String Load(Model model, @PathVariable(required = false) String id) {
+	public String Load(Model model, @PathVariable(required = false) String id, HttpServletRequest request) {
 		
 		int eventId = Integer.parseInt(id);
+		
+		Principal currentUser = request.getUserPrincipal();
+		if (currentUser != null)
+			model.addAttribute("loggedUser", currentUser.getName());
+		
 		//TODO cuando haya login comprobar que el usuario logeado coincide con el del evento
 		model.addAttribute("eventId", eventId);
 		model.addAttribute("page_title", "Añadir Ticket");

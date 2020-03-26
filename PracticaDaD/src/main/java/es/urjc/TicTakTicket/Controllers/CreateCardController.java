@@ -1,12 +1,13 @@
 package es.urjc.TicTakTicket.Controllers;
 
+import java.security.Principal;
 import java.sql.Date;
-import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,16 +28,14 @@ public class CreateCardController {
 	
 	User eventUser;
 	
-	@RequestMapping(value = {"/addCard","/addCard/{username}"})
-	public String Load(Model model, @PathVariable(required = false) String username) {
-		if (username != null) {
-			Optional<User> user = userR.findById(username);
-			if (user.isPresent()) {
-				eventUser = user.get();
-			} 
-		} else {
-			eventUser = userR.findById("default").get();
-		}
+	@RequestMapping(value = {"/addCard"})
+	public String Load(Model model, HttpServletRequest request) {
+		
+		Principal currentUser = request.getUserPrincipal();
+		if (currentUser != null)
+			model.addAttribute("loggedUser", currentUser.getName());
+		
+		eventUser = userR.findById(currentUser.getName()).get();
 		
 		model.addAttribute("page_title", "Crear Evento");
 		

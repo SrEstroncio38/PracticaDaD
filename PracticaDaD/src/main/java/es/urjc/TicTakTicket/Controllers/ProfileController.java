@@ -1,12 +1,13 @@
 package es.urjc.TicTakTicket.Controllers;
 
+import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,19 +28,16 @@ public class ProfileController {
 	
 	User currentUser;
 	
-	@RequestMapping(value = {"/user","/user/{username}"})
-	public String register(Model model, @PathVariable(required = false) String username) {
+	@RequestMapping(value = {"/user"})
+	public String register(Model model, HttpServletRequest request) {
 		
-		if(username != null) {
-			Optional<User> user = userR.findById(username);
-			if (user.isPresent()) {
-				currentUser = user.get();
-			} 
-		} else {
-			currentUser = userR.findById("default").get();
-		}
+		Principal currentUser = request.getUserPrincipal();
+		if (currentUser != null)
+			model.addAttribute("loggedUser", currentUser.getName());
 		
-		List<Payment> payments = paymentR.findByUser(currentUser);
+		User currentUser2 = userR.findById(currentUser.getName()).get();
+		
+		List<Payment> payments = paymentR.findByUser(currentUser2);
 		
 		model.addAttribute("cards", payments);
 		model.addAttribute("page_title", "Perfil");

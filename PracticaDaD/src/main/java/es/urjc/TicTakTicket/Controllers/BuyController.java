@@ -1,7 +1,10 @@
 package es.urjc.TicTakTicket.Controllers;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,15 +44,19 @@ public class BuyController {
 	private UserRepository userR;
 
 	@RequestMapping(value = {"/buy/{id}"})
-	public String Load(Model model, @PathVariable(required = true) int id) {
+	public String Load(Model model, @PathVariable(required = true) int id, HttpServletRequest request) {
 		
 		Event event = eventR.findById(id).get();
 		
 		List<Ticket> tickets = ticketR.findByEvent(event);
 		
-		User currentUser = userR.findById("default").get();
+		Principal currentUser = request.getUserPrincipal();
+		if (currentUser != null)
+			model.addAttribute("loggedUser", currentUser.getName());
 		
-		List<Payment> payments = paymentR.findByUser(currentUser);
+		User currentUser2 = userR.findById(currentUser.getName()).get();
+		
+		List<Payment> payments = paymentR.findByUser(currentUser2);
 		
 		model.addAttribute("tickets",tickets);
 		model.addAttribute("cards", payments);
