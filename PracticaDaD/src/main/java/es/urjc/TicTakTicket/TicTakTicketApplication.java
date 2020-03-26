@@ -9,6 +9,7 @@ public class TicTakTicketApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TicTakTicketApplication.class, args);
+		
 	}
 	
 

@@ -24,22 +24,13 @@ public class EventsController {
 
 	@Autowired
 	UserRepository userR;
-
 	
 	@PostConstruct
 	public void init() {
-		//Creación usuarios
 		User a = new User("default", "1234");
+		User b = new User("default2", "{noop}1234");
 		userR.save(a);
-		User d = new User("David", "1234");
-		userR.save(d);
-		User c = new User("Carlos", "1234");
-		userR.save(c);
-		User z = new User("Zoe", "1234");
-		userR.save(z);
-		User n = new User("Natalia", "1234");
-		userR.save(n);
-	
+		userR.save(b);
 	}
 
 	@GetMapping(value = {"/","/events","/events/{num}"})
