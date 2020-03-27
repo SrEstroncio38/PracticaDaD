@@ -102,3 +102,95 @@ Por último, se muestra como se ha implementado la relación entre las entidades
 - **UML**
 
 ![UML (Fase 2)](./pictures/UML.png)
+
+## Fase 3 ##
+
+### Navegación ###
+
+#### Registarse (Pública) ####
+
+![Registrarse](./pictures/Registrarse.PNG)
+
+Desde esta página uno podrá registarse para poder iniciar sesión en futuras conexiones.
+
+Un registro exitoso te redirige a la pantalla de login. En caso de que el usuario ya exista o los campos de contraseña no coincidan, se recarga la página.
+
+#### Iniciar sesión (Pública) ####
+
+![Iniciar sesión](./pictures/Iniciar_sesion.PNG)
+
+Permite iniciar sesión para acceder a las funcionalidades privadas.
+
+Se accede a esta de forma automática si se intenta acceder a una página privada sin iniciar sesión. Si uno inicia sesión de forma exitosa, se retorna a la página previa.
+
+#### Inicio (Pública) ####
+
+![Inicio (sin iniciar sesión)](./pictures/fase3/Inicio1.PNG)
+
+![Inicio (con sesión iniciada)](./pictures/fase3/Inicio2.PNG)
+
+Desde esta página se podrán consultar los eventos disponibles junto con su información. En el supuesto de que el usuario haya iniciado sesión, podrá también adquirir las entradas.
+
+Adicionalmente (igual que ocurrirá en las siguiente páginas), los menús para iniciar sesión y registrarse serán unicamente visibles si el usuario no se ha identificado. En caso contrario, estos campos desaparecerán y se visualizará un menú de usuario en la esquina superior derecha.
+
+#### Adquirir tickets (Privada) ####
+
+![Adquirir tickets](./pictures/fase3/Comprar.PNG)
+
+El usuario podrá elegir una tarjeta de pago, un máximo de 5 tickets para adquirir y los nombres de los usuarios de los tickets. Completar la adquisición genera un valor nuevo de "Order".
+
+Ahora, el usuario que realiza la compra se identifica a través del request en lugar de a través de la url.
+
+#### Perfil (Privada) ####
+
+![Perfil](./pictures/fase3/Perfil.PNG)
+
+Consulta las tarjetas de crédito asociadas a un usuario. Se pueden añadir o borrar tarjetas a elección de este.
+
+El usuario se recupera del propio request, no de la url.
+
+#### Añadir tarjeta (Privada) ####
+
+![Añadir tarjeta](./pictures/fase3/Anadir_tarjeta.PNG)
+
+Accesible desde el perfil de usuario. Crea entradas nuevas de "Payment". Es necesario tener como mínimo una tarjeta para adquirir entradas.
+
+Se comprueba el usuario loggeado a la hora de añadir las tarjetas.
+
+#### Mis compras (Privada) ####
+
+![Mis compras](./pictures/fase3/Mis_compras.PNG)
+
+Permite al usuario visualizar las entradas que ha adquirido.
+
+Solo se mostrarán aquellas entradas cuyo propietario coincida con el usuario que ha iniciado sesión.
+
+#### Mis eventos (Privada) ####
+
+![Mis eventos](./pictures/fase3/Mis_eventos.PNG)
+
+Similar a la página de "Eventos". Unicamente muestra los eventos que han sido creados por el usuario. No se pueden adquirir tickets desde aquí, pero te permite añadir tickets nuevos o eliminar el evento.
+
+Incluso si se intenta borrar/modificar un ticket del que no se es propietario a través de la url, la llamada no será exitosa si el usuario no coincide.
+
+#### Añadir ticket (Privada) ####
+
+![Añadir ticket](./pictures/fase3/Anadir_ticket.PNG)
+
+Genera un nuevo tipo de ticket para un evento preexistente.
+
+Se comprueba tanto al acceder a la página como al hacer la petición de que el usuario sea propietario del evento.
+
+#### Crear evento (Privada) ####
+
+![Crear evento](./pictures/fase3/Crear_evento.PNG)
+
+Solicita los datos necesarios para generar un nuevo evento visible para todos los usuarios. También es necesario crear un ticket que acompañe al evento.
+
+#### Diagrama de navegación ####
+
+Aunque este permanece bastante similar al presentado en la fase 2, si que se notan algunas diferencias:
+
+IMAGEN
+
+### Diagrama de clases y templates ###
