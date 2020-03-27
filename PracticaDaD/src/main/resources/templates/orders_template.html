@@ -15,9 +15,19 @@ f{{> includes/header}}
 		<!-- Card Content - Collapse -->
 		<div class="collapse" id="collapse{{-index}}" style="">
 			<div class="card-body">
-				<h4>
+			<div class="row">
+				<h4 class="col-12 col-md-4">
 					<strong>Compra realizada por: </strong>{{name}}
 				</h4>
+				<div class="col-6 offset-md-6 col-md-2 text-right">
+					<a href="/generatePDF/{{id}}" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span class="text">Generar PDF</span>
+                  </a>
+				</div>
+			</div>
 				<hr>
 				<h4>
 					<strong>Identificador de compra: {{id}}</strong>
