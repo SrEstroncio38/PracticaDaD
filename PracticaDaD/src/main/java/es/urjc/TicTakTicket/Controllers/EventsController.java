@@ -2,7 +2,6 @@ package es.urjc.TicTakTicket.Controllers;
 
 import java.security.Principal;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import es.urjc.TicTakTicket.Entities.Event;
 import es.urjc.TicTakTicket.Entities.EventRepository;
-import es.urjc.TicTakTicket.Entities.User;
 import es.urjc.TicTakTicket.Entities.UserRepository;
 
 @Controller
@@ -29,11 +27,13 @@ public class EventsController {
 	@Autowired
 	UserRepository userR;
 	
+	/*
 	@PostConstruct
 	public void init() {
 		User a = new User("default", "1234");
 		userR.save(a);
 	}
+	*/
 
 	@GetMapping(value = {"/","/events","/events/{num}"})
 	public String Load(Model model, @PathVariable(required = false) String num, HttpServletRequest request) {

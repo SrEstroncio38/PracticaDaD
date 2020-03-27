@@ -75,10 +75,12 @@ public class BuyController {
 			@RequestParam String person_1, @RequestParam String tickettype_1,
 			@RequestParam String person_2, @RequestParam String tickettype_2,
 			@RequestParam String person_3, @RequestParam String tickettype_3,
-			@RequestParam String person_4, @RequestParam String tickettype_4
+			@RequestParam String person_4, @RequestParam String tickettype_4,
+			HttpServletRequest request
 			) {
 		
-		User currentUser = userR.findById("default").get();
+		Principal currentUser = request.getUserPrincipal();
+		User currentUser2 = userR.findById(currentUser.getName()).get();
 		
 		if(selectedCard != "" && selectedCard != null) {
 			
@@ -121,7 +123,7 @@ public class BuyController {
 			}
 			
 			if (!tickets.isEmpty()) {
-				Order order = new Order(names, tickets, currentUser, displayNumber);
+				Order order = new Order(names, tickets, currentUser2, displayNumber);
 				orderR.save(order);
 				return "redirect:/events";
 			}

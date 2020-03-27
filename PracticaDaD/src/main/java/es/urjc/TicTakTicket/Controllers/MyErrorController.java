@@ -29,20 +29,21 @@ public class MyErrorController implements ErrorController {
 	     
 	    if (status != null) {
 	        Integer statusCode = Integer.valueOf(status.toString());
+        	model.addAttribute("erroNum", statusCode);
+        	model.addAttribute("page_title", "Error " + statusCode);
 	     
 	        if(statusCode == HttpStatus.NOT_FOUND.value()) {
-	        	model.addAttribute("errorNum", "404");
 	        	model.addAttribute("errorName", "Not Found");
 	        	model.addAttribute("errorMsg", "Lo sentimos, no hemos podido encontrar la página específicada");
-	        	model.addAttribute("page_title", "Error 404");
 	            return "error_template";
 	        }
 	        else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-	        	model.addAttribute("errorNum", "500");
 	        	model.addAttribute("errorName", "Internal Server Error");
 	        	model.addAttribute("errorMsg", "Parece ser que ha ocurrido un error insesperado, por favor, inténtelo de nuevo más tarde");
-	        	model.addAttribute("page_title", "Error 500");
 	            return "error_template";
+	        } else {
+	        	model.addAttribute("errorName", "Oopsie Doopsie");
+	        	model.addAttribute("errorMsg", "Parece ser que cierta persona va a quedar en ridiculo delante del teacher");
 	        }
 	    }
 	    return "error_template";
