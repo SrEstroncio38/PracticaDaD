@@ -34,15 +34,11 @@ public class RegisterController {
 			HttpServletRequest request
 			) {
 		
-		System.out.println("patata");
-		
 		if (!password1.equals(password2)) {
-			System.out.println("F contraseña");
 			return "redirect:/register";
 		}
 		
 		if (userR.findById(username).isPresent()) {
-			System.out.println("F usuario");
 			return "redirect:/register";
 		}
 		

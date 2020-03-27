@@ -76,6 +76,7 @@ public class BuyController {
 			@RequestParam String person_2, @RequestParam String tickettype_2,
 			@RequestParam String person_3, @RequestParam String tickettype_3,
 			@RequestParam String person_4, @RequestParam String tickettype_4,
+			@RequestParam(required = false) String email,
 			HttpServletRequest request
 			) {
 		
@@ -125,6 +126,7 @@ public class BuyController {
 			if (!tickets.isEmpty()) {
 				Order order = new Order(names, tickets, currentUser2, displayNumber);
 				orderR.save(order);
+				//TODO enviar email
 				return "redirect:/events";
 			}
 		}
