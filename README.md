@@ -194,3 +194,7 @@ Aunque este permanece bastante similar al presentado en la fase 2, si que se not
 IMAGEN
 
 ### Diagrama de clases y templates ###
+
+En cuanto a las clases presentes en el proyecto, podemos definir sus relaciones como:
+
+![Diagrama clases](./pictures/fase3/Diagrama.PNG)

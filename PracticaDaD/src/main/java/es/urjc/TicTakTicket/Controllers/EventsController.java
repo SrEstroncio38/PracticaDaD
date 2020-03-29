@@ -15,25 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import es.urjc.TicTakTicket.Entities.Event;
 import es.urjc.TicTakTicket.Entities.EventRepository;
-import es.urjc.TicTakTicket.Entities.UserRepository;
 
 @Controller
 public class EventsController {
 	
 	@Autowired
 	private EventRepository eventR;
-	
-
-	@Autowired
-	UserRepository userR;
-	
-	/*
-	@PostConstruct
-	public void init() {
-		User a = new User("default", "1234");
-		userR.save(a);
-	}
-	*/
 
 	@GetMapping(value = {"/","/events","/events/{num}"})
 	public String Load(Model model, @PathVariable(required = false) String num, HttpServletRequest request) {
