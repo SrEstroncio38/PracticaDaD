@@ -215,7 +215,31 @@ En cuanto a las clases presentes en el proyecto, podemos definir sus relaciones 
 
 ### Instrucciones despligue ###
 
-Para realizar el despliegue de la aplicación utilizaremos la versión de Ubuntu 18.04.04 LTS. Para el correcto despligue de las aplicaciones será necesario la instalación previa de: 
+Para realizar el despligue de la aplicación, primero debemos crear una máquina virtual de Ubuntu 14.04 LTS en nuestro ordenador. Para ello seguiremos los siguientes pasos.
+
+Instalaremos [*VirtualBox*](https://www.virtualbox.org/wiki/Downloads) y [*Vagrant*](https://www.vagrantup.com/downloads.html).
+
+Cuando hayamos instalado ambos programas y reiniciado el PC, procederemos a crear la máquina virtual desde la consola de nuestro SO con los siguientes comandos:
+
+```
+mkdir -p ~/vagrant/spring
+cd ~/vagrant/spring
+vagrant init ubuntu/trusty32
+```
+
+Iremos al la ruta `~/vagrant/spring` y modificaremos el archivo *Vagrantfile* y descomentaremos la siguiente linea:
+
+`# config.vm.network "private_network", ip: "192.168.33.10”`
+
+Tras descomentar la línea podemos encender nuestra máquina virtual comprobando así que todo funcione correctamente y conectarnos a ella:
+
+```
+vagrant up
+ping 192.168.33.10
+vagrant ssh
+```
+
+Para el correcto despligue de las aplicaciones será necesario la instalación previa dentro de la Máquina Virtual de: 
 
 - **JRE de Java**
 
@@ -225,9 +249,13 @@ Primeramente nos aseguramos de tener asegurados la JRE de Java con el siguiente 
 
 `java -version`
 
-Si no se encuentra la orden de Java significa que no la tenemos instalada la JRE y tendremos que usar el siguiente comando:
+Si no se encuentra la orden de Java significa que no la tenemos instalada la JRE y tendremos que usar los siguientes comandos:
 
-`sudo apt-get install default-jre`
+```
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get install openjdk-8-jdk
+```
 
 A continuación comprobamos que tengamos instalado MySQL en nuestra máquina con el siguiente comando:
 
@@ -291,22 +319,60 @@ Si no estuviera activo, lo podemos activar con este comando:
 
 `sudo service mysql start`
 
-Teniendo ya preparada la base de datos solo queda ejecutar ambas aplicaciones. Para ello realizamos un clone del repositorio en nuestra máquina, para ello en necesario tener instalado **git** en nuestra máquina. Si no lo tenemos instalado usaremos el siguiente comando:
+Por último es necesario actualizar unos certificados para que la máquina sea capaz de mandar emails a los usuarios, esto se hará ejecutando los siguientes comandos:
+
+```
+sudo apt-get install -y ca-certificates-java
+sudo mkdir /etc/ssl/certs/java/
+sudo update-ca-certificates -f
+```
+
+Teniendo ya preparada la base de datos solo queda ejecutar ambas aplicaciones. Para ello realizamos podremos tanto realizar un clone del repositorio en nuestra máquina o simplemente copiar los archivos localmente.
+ 
+
+La opción más sencilla es copiar los archivos localmente. Para ello solo habría que colocar ambos *.jar* en la siguiente ruta (En Windows ~ significa la carpeta del Usuario que está ejecutando Windows):
+
+`~/vagrant/Spring`
+
+Tras copiarlos será necesario abrir dos consolas de Windows donde ejecutaremos los siguientes comandos:
+
+1º consola
+```
+cd ~/vagrant/spring
+vagrant ssh
+sudo java -jar vagrant/Tic-Tak-Ticket-0.0.1-SNAPSHOT.jar
+```
+
+2º consola
+```
+cd ~/vagrant/spring
+vagrant ssh
+sudo java -jar vagrant/ServicioInterno-0.0.1-SNAPSHOT.jar
+```
+
+Si se deseara realizar el clone, es necesario tener instalado **git** en nuestra máquina. Si no lo tenemos instalado usaremos el siguiente comando:
 
 `sudo apt install git`
 
 Si ya lo tenemos instalado podemos clonar el repositorio abriendo una consola en la carpeta donde queramos clonar la aplicación y ejecutando lo siguiente:
 
-`git clone https://github.com/SrEstroncio38/PracticaDaD.git`
+```
+cd /vagrant
+git clone https://github.com/SrEstroncio38/PracticaDaD.git
+```
 
-Al ejecutar este comando se nos copiará la carpeta del proyecto en nuestro directorio de usuario de Ubuntu, por lo que para poder ejecutar ambas aplicaciones tendremos que utilizar dos consolas por separado en las que ejecutaremos los siguientes comandos:
+Al ejecutar este comando se nos copiará la carpeta del proyecto en nuestro directorio */vagrant* de nuestra máquina, por lo que para poder ejecutar ambas aplicaciones tendremos que utilizar dos consolas de Windows por separado en las que ejecutaremos los siguientes comandos:
 
 1º consola
 ```
-sudo java -jar ./PracticaDaD/Ejecutables/Tic-Tak-Ticket-0.0.1-SNAPSHOT.jar
+cd ~/vagrant/spring
+vagrant ssh
+sudo java -jar vagrant/PracticaDaD/Ejecutables/Tic-Tak-Ticket-0.0.1-SNAPSHOT.jar
 ```
 
 2º consola
 ```
-sudo java -jar ./PracticaDaD/Ejecutables/ServicioInterno-0.0.1-SNAPSHOT.jar
+cd ~/vagrant/spring
+vagrant ssh
+sudo java -jar vagrant/PracticaDaD/Ejecutables/ServicioInterno-0.0.1-SNAPSHOT.jar
 ```
