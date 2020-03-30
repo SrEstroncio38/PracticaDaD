@@ -211,4 +211,4 @@ En cuanto a las clases presentes en el proyecto, podemos definir sus relaciones 
 
 ![Diagrama clases](./pictures/fase3/Diagrama.png)
 
-!![Diagrama clases](./pictures/fase3/DiagramaSI.png)
+![Diagrama clases](./pictures/fase3/DiagramaSI.png)
