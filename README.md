@@ -212,3 +212,101 @@ En cuanto a las clases presentes en el proyecto, podemos definir sus relaciones 
 ![Diagrama clases](./pictures/fase3/Diagrama.png)
 
 ![Diagrama clases](./pictures/fase3/DiagramaSI.png)
+
+### Instrucciones despligue ###
+
+Para realizar el despliegue de la aplicación utilizaremos la versión de Ubuntu 18.04.04 LTS. Para el correcto despligue de las aplicaciones será necesario la instalación previa de: 
+
+- **JRE de Java**
+
+- **MYSQL**
+
+Primeramente nos aseguramos de tener asegurados la JRE de Java con el siguiente comando:
+
+`java -version`
+
+Si no se encuentra la orden de Java significa que no la tenemos instalada la JRE y tendremos que usar el siguiente comando:
+
+`sudo apt-get install default-jre`
+
+A continuación comprobamos que tengamos instalado MySQL en nuestra máquina con el siguiente comando:
+
+`mysql --version`
+
+Si no se encuentra la orden de MySQL significa que no tenemos instalado MySQL por lo que tendremos que hacerlo con el siguiente comando:
+
+`sudo apt install mysql-server`
+
+Tras la instalación comprobamos que MySQL tiene como usuario administrador **root** y sin contraseña, para ello usaremos los siguientes comandos:
+
+```
+sudo mysql
+mysql> SELECT user,authentication_string,plugin,host FROM mysql.user;
+```
+
+Nos debería salir un Output similiar al siguiente, el cual si coincide la primera fila faltaría hacer un paso extra.
+
+```
++------------------+-------------------------------------------+-----------------------+-----------+
+| user             | authentication_string                     | plugin                | host      |
++------------------+-------------------------------------------+-----------------------+-----------+
+| root             |                                           | auth_socket           | localhost |
+| mysql.session    | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | mysql_native_password | localhost |
+| mysql.sys        | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | mysql_native_password | localhost |
+| debian-sys-maint | *CC744277A401A7D25BE1CA89AFF17BF607F876FF | mysql_native_password | localhost |
++------------------+-------------------------------------------+-----------------------+-----------+
+4 rows in set (0.00 sec)
+```
+
+El paso extra es en referencia a la columna plugin, para que funcione nuestra aplicación es necesario cambiar el método de *auth_socket* a *mysql_native_password*. Para ello hay varias formas posibles, la primera y más sencilla es usar los siguientes comandos:
+
+
+```
+sudo mysql
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+mysql> FLUSH PRIVILEGES;
+```
+
+Es posible que este proceso de un error, si es así podemos usar la siguiente opción:
+
+```
+sudo mysql
+mysql> use mysql;
+mysql> update user set plugin='mysql_native_password' where User='root';
+mysql> FLUSH PRIVILEGES;
+```
+
+Sabiendo ya que nuestro usuario de administrador es el correcto debemos crear el esquema de la BBDD que coincida con el de nuestra aplicación, nuestro caso se llama **tic_tak_ticket**, para ello ejecutaremos los siguientes comandos:
+
+```
+sudo mysql
+mysql> CREATE SCHEMA tic_tak_ticket;
+```
+
+Tras esto dejamos activo el servidor de MySQL, en principio tras la instalación se activa automáticamente, para comprobarlo se puede utilizar el siguiente comando, el cual no explicará el estado del servicio MySQL.
+
+`sudo service mysql status`
+
+Si no estuviera activo, lo podemos activar con este comando:
+
+`sudo service mysql start`
+
+Teniendo ya preparada la base de datos solo queda ejecutar ambas aplicaciones. Para ello realizamos un clone del repositorio en nuestra máquina, para ello en necesario tener instalado **git** en nuestra máquina. Si no lo tenemos instalado usaremos el siguiente comando:
+
+`sudo apt install git`
+
+Si ya lo tenemos instalado podemos clonar el repositorio abriendo una consola en la carpeta donde queramos clonar la aplicación y ejecutando lo siguiente:
+
+`git clone https://github.com/SrEstroncio38/PracticaDaD.git`
+
+Al ejecutar este comando se nos copiará la carpeta del proyecto en nuestro directorio de usuario de Ubuntu, por lo que para poder ejecutar ambas aplicaciones tendremos que utilizar dos consolas por separado en las que ejecutaremos los siguientes comandos:
+
+1º consola
+```
+sudo java -jar ./PracticaDaD/Ejecutables/Tic-Tak-Ticket-0.0.1-SNAPSHOT.jar
+```
+
+2º consola
+```
+sudo java -jar ./PracticaDaD/Ejecutables/ServicioInterno-0.0.1-SNAPSHOT.jar
+```
