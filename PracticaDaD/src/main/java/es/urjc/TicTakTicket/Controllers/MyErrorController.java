@@ -26,6 +26,10 @@ public class MyErrorController implements ErrorController {
 		model.addAttribute("token", token.getToken());
 		
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+		
+		model.addAttribute("errorNum", 0);
+		model.addAttribute("errorName", "Oopsie Doopsie");
+    	model.addAttribute("errorMsg", "Parece ser que cierta persona va a quedar en ridiculo delante del teacher");
 	     
 	    if (status != null) {
 	        Integer statusCode = Integer.valueOf(status.toString());
@@ -41,9 +45,6 @@ public class MyErrorController implements ErrorController {
 	        	model.addAttribute("errorName", "Internal Server Error");
 	        	model.addAttribute("errorMsg", "Parece ser que ha ocurrido un error insesperado, por favor, inténtelo de nuevo más tarde");
 	            return "error_template";
-	        } else {
-	        	model.addAttribute("errorName", "Oopsie Doopsie");
-	        	model.addAttribute("errorMsg", "Parece ser que cierta persona va a quedar en ridiculo delante del teacher");
 	        }
 	    }
 	    return "error_template";

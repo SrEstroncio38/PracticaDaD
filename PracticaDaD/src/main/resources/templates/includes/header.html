@@ -9,7 +9,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
+  {{#page_title}}
+  <title>Tic Tak Ticket | {{page_title}}</title>
+  {{/page_title}}
+  {{^page_title}}
   <title>Tic Tak Ticket</title>
+  {{/page_title}}
 
   <!-- Custom fonts for this template-->
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
