@@ -1,11 +1,8 @@
 package es.urjc.ServicioInterno.RestControllers;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -16,7 +13,6 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -90,6 +85,7 @@ public class EmailRestController {
 		addTableHeader(table);
 		ArrayList<String> names = (ArrayList<String>) nOrder.getNames();
 		int j = 0;
+		int precioTot = 0;
 		for (Ticket t : nOrder.getTickets()) {
 			if (names.size() == j) {
 				break;
@@ -97,12 +93,17 @@ public class EmailRestController {
 				table.addCell(names.get(j));
 				table.addCell(t.getName());
 				table.addCell(Float.toString(t.getPrice())+" €");
+				precioTot += t.getPrice();
 				j++;
 			}
 		}
 		
+		Paragraph blank = new Paragraph("", font);
+		Paragraph precio = new Paragraph("Precio total de la compra: "+precioTot+" €", font);
 		document.add(chunk);
 		document.add(table);
+		document.add(blank);
+		document.add(precio);
 		
 		document.close();
 		

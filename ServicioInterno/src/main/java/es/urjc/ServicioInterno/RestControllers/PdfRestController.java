@@ -1,28 +1,21 @@
 package es.urjc.ServicioInterno.RestControllers;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 
-import org.apache.pdfbox.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -95,6 +88,7 @@ public class PdfRestController {
 			addTableHeader(table);
 			ArrayList<String> names = (ArrayList<String>) nOrder.getNames();
 			int j = 0;
+			int precioTot = 0;
 			for (Ticket t : nOrder.getTickets()) {
 				if (names.size() == j) {
 					break;
@@ -102,12 +96,17 @@ public class PdfRestController {
 					table.addCell(names.get(j));
 					table.addCell(t.getName());
 					table.addCell(Float.toString(t.getPrice())+" €");
+					precioTot += t.getPrice();
 					j++;
 				}
 			}
 			
+			Paragraph blank = new Paragraph("", font);
+			Paragraph precio = new Paragraph("Precio total de la compra: "+precioTot+" €", font);
 			document.add(chunk);
 			document.add(table);
+			document.add(blank);
+			document.add(precio);
 			
 			document.close();
 			//Cierras
