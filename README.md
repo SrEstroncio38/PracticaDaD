@@ -1,6 +1,13 @@
 # Tic Tak Ticket
 
-## Fase 1 ##
+## Índice ##
+1. [Fase 1](#id1) 
+2. [Fase 2](#id2) 
+3. [Fase 3](#id3)
+
+___
+
+## Fase 1 <a name="id1"></a> ##
 
 ### Descripción general ###
 
@@ -30,8 +37,11 @@ Cuando el usuario adquiera una entrada, se enviará a este un correo con el pdf 
 - **David Fontela Moñino**:
   - Correo: d.fontela.2016@alumnos.urjc.es
   - Cuenta GitHub: [SrEstroncio38](https://github.com/SrEstroncio38)
+
+
+___
     
-## Fase 2 ##
+## Fase 2 <a name="id2"></a> ##
 
 ### Diseño de la página ###
 
@@ -89,7 +99,7 @@ Solicita los datos necesarios para generar un nuevo evento visible para todos lo
 
 A continuación se presenta el diagrama de navegación que representa al usuario moviéndose por las diferentes vistas de la web.
 
-![Mis compras](./pictures/Diagrama_navegacion.png)
+![Diagrama navegación](./pictures/Diagrama_navegacion.png)
 
 ### Modelo de datos ###
 
@@ -103,7 +113,9 @@ Por último, se muestra como se ha implementado la relación entre las entidades
 
 ![UML (Fase 2)](./pictures/UML.png)
 
-## Fase 3 ##
+___
+
+## Fase 3 <a name="id3"></a> ##
 
 ### Navegación ###
 
@@ -189,12 +201,14 @@ Solicita los datos necesarios para generar un nuevo evento visible para todos lo
 
 #### Diagrama de navegación ####
 
-Aunque este permanece bastante similar al presentado en la fase 2, si que se notan algunas diferencias:
+Se mantiene igual al presentado en la fase 2:
 
-IMAGEN
+![Diagrama navegación](./pictures/Diagrama_navegacion.png)
 
 ### Diagrama de clases y templates ###
 
 En cuanto a las clases presentes en el proyecto, podemos definir sus relaciones como:
 
-![Diagrama clases](./pictures/fase3/Diagrama.PNG)
+![Diagrama clases](./pictures/fase3/Diagrama.png)
+
+!![Diagrama clases](./pictures/fase3/DiagramaSI.png)
