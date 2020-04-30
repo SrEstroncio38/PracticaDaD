@@ -42,7 +42,7 @@ public class GeneratePDFController {
 			Order order = currentOrder.get();
 			if (cUser.getUsername() == order.getUser().getUsername()) {
 				RestTemplate restTemplate = new RestTemplate();
-				String url = "http://127.0.0.1:8080/pdf/"+ id;
+				String url = "http://api1:8080/pdf/"+ id;
 				ResponseEntity<byte[]> response = restTemplate.postForEntity(url, null, byte[].class);
 				return response;
 			}

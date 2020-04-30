@@ -131,7 +131,7 @@ public class BuyController {
 				//TODO enviar email
 				if (!email.equals("")) {
 					RestTemplate restTemplate = new RestTemplate();
-					String url = "http://127.0.0.1:8080/email/" + order.getId();
+					String url = "http://api1:8080/email/" + order.getId();
 					ResponseEntity<Boolean> response = restTemplate.postForEntity(url, email, Boolean.class);
 				}
 				
