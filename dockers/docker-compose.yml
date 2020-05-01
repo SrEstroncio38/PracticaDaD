@@ -1,32 +1,75 @@
 version: "3"
-services:    
+services:
+    myhaproxy:
+        build: ./myHaproxy
+        ports: 
+            - "443:443"
+        networks:
+            my-new-net:
+                aliases:
+                - myhaproxy
+        depends_on:
+            - web1
+            - web2
+            - api1
+            - api2
     web1:
         build: ./ticTakTicket
         ports:
             -  "8443:8443"
         links:
             - db
-            - api1
-        networks:
-            - my-new-net
-        environment:
-            - SERVER_PORT=8444
-    api1:
-        build: ./servicioInterno
-        ports:
-            -  "8080:8080"
-        links:
+        depends_on:
             - db
         networks:
             - my-new-net
         environment:
-            - SERVER_PORT=8080
+            - SERVER_PORT=8443
+    web2:
+        build: ./ticTakTicket
+        ports:
+            -  "8444:8444"
+        links:
+            - db
+        depends_on:
+            - db
+        networks:
+            - my-new-net
+        environment:
+            - SERVER_PORT=8444
+
+    api1:
+        build: ./servicioInterno
+        ports:
+            -  "8087:8087"
+        links:
+            - db
+        depends_on:
+            - db
+        networks:
+            - my-new-net
+        environment:
+            - SERVER_PORT=8087
+
+    api2:
+        build: ./servicioInterno
+        ports:
+            -  "8088:8088"
+        links:
+            - db
+        depends_on:
+            - db
+        networks:
+            - my-new-net
+        environment:
+            - SERVER_PORT=8088
+
 
 
     db: 
         image: mysql:5.6.48
         restart: always
-        command: --default-authentication-plugin=mysql_native_password
+        
         environment:
             MYSQL_DATABASE: 'tic_tak_ticket'
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
