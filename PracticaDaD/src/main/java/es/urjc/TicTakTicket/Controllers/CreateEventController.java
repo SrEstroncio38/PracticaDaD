@@ -53,7 +53,14 @@ public class CreateEventController {
 	
 	@PostMapping("/createEvent")
 	public String Submit(Model model, @RequestParam String eventName, @RequestParam String eventDesc, 
-			@RequestParam String ticketName,  @RequestParam String ticketPrice, @RequestParam String ticketDesc) {
+			@RequestParam String ticketName,  @RequestParam String ticketPrice, @RequestParam String ticketDesc, HttpServletRequest request) {
+		
+		Principal currentUser = request.getUserPrincipal();
+		if (currentUser != null)
+			model.addAttribute("loggedUser", currentUser.getName());
+		
+		
+		eventUser = userR.findById(currentUser.getName()).get();
 		
 		if(eventName != null && eventDesc != null && ticketName != null && ticketDesc != null && ticketPrice != null && eventUser != null) {
 			

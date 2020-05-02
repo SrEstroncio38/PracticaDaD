@@ -48,7 +48,14 @@ public class CreateCardController {
 	
 	@PostMapping("/addCard")
 	public String Submit(Model model, @RequestParam String cardNumber, @RequestParam String ownerName, 
-			@RequestParam String expireDate,  @RequestParam String cvv) {
+			@RequestParam String expireDate,  @RequestParam String cvv, HttpServletRequest request) {
+		
+		Principal currentUser = request.getUserPrincipal();
+		if (currentUser != null)
+			model.addAttribute("loggedUser", currentUser.getName());
+		
+		
+		eventUser = userR.findById(currentUser.getName()).get();
 		
 		if(!cardNumber.equals("") && !ownerName.equals("") && !expireDate.equals("") && !cvv.equals("") && eventUser != null) {
 			

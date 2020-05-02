@@ -12,19 +12,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @CacheConfig(cacheNames="eventos")
 public interface EventRepository extends JpaRepository<Event,Integer>{
 	
-	@CacheEvict(allEntries=true)
+	//@CacheEvict(allEntries=true)
 	Event save(Event event);
 
-	@Cacheable
+	//@Cacheable
 	List<Event> findByUser(User user);
-	@Cacheable
+	//@Cacheable
 	List<Event> findByName(String name);
-	@Cacheable
+	//@Cacheable
 	Page<Event> findByUser(User user, Pageable page);
 	
-	@Cacheable
+	//@Cacheable
 	List<Event> findAll();
 	
-	@Cacheable
+	//@Cacheable
 	Page<Event> findAll(Pageable page);
 }
