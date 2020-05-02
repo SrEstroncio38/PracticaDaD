@@ -1,6 +1,5 @@
 package es.urjc.TicTakTicket;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
@@ -27,13 +26,9 @@ public class TicTakTicketApplication {
 	    return new JedisConnectionFactory();
 	  }
 	
-	@Value("${spring.session.timeout}")
-    private Integer maxInactiveIntervalInSeconds;
-	
     @Bean
     public RedisOperationsSessionRepository sessionRepository( RedisConnectionFactory factory) {
         RedisOperationsSessionRepository sessionRepository = new RedisOperationsSessionRepository(factory);
-        sessionRepository.setDefaultMaxInactiveInterval(maxInactiveIntervalInSeconds);
         return sessionRepository;
     }
 	
