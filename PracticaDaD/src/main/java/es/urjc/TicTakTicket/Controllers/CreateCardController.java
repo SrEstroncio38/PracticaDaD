@@ -39,7 +39,11 @@ public class CreateCardController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		eventUser = userR.findById(currentUser.getName()).get();
+		try {
+			eventUser = userR.findById(currentUser.getName()).get();
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
 		model.addAttribute("page_title", "Crear Evento");
 		
@@ -54,8 +58,11 @@ public class CreateCardController {
 		if (currentUser != null)
 			model.addAttribute("loggedUser", currentUser.getName());
 		
-		
-		eventUser = userR.findById(currentUser.getName()).get();
+		try {
+			eventUser = userR.findById(currentUser.getName()).get();
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
 		if(!cardNumber.equals("") && !ownerName.equals("") && !expireDate.equals("") && !cvv.equals("") && eventUser != null) {
 			
@@ -63,7 +70,11 @@ public class CreateCardController {
 			Short c = Short.valueOf(cvv);
 			
 			Payment payment = new Payment(eventUser, ownerName, cardNumber, d, c);
-			paymentR.save(payment);
+			try {
+				paymentR.save(payment);
+			} catch (Exception e) {
+				return "redirect:/addCard";
+			}
 			
 			return "redirect:/user";
 		} else {

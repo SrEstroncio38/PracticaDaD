@@ -48,7 +48,11 @@ public class MyEventsController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		myUser = userR.findById(currentUser.getName()).get();
+		try {
+			myUser = userR.findById(currentUser.getName()).get();
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
 		int numPage = 0;
 		int paso = 5;
@@ -61,7 +65,12 @@ public class MyEventsController {
 				prePageFlag = true;
 			}
 		}
-		Page<Event> events = eventR.findByUser(myUser,PageRequest.of(numPage, paso));
+		Page<Event> events;
+		try {
+			events = eventR.findByUser(myUser,PageRequest.of(numPage, paso));
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		boolean eventFlag = false;
 		if(!events.isEmpty()) {
 			eventFlag = true;
@@ -84,18 +93,35 @@ public class MyEventsController {
 	public String removeEvent(Model model, @PathVariable(required = false) String id) {
 		
 		int intId = Integer.parseInt(id);
-		//TODO cuando haya login comprobar que el usuario logeado coincide con el del evento
-		Optional<Event> eventToDelete = eventR.findById(intId);
+		Optional<Event> eventToDelete;
+		try {
+			eventToDelete = eventR.findById(intId);
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		if(eventToDelete.isPresent()) {
 			Event event = eventToDelete.get();
 			for (Ticket t : event.getTickets()) {
-				List<Order> orders = orderR.findByTickets(t);
+				List<Order> orders;
+				try {
+					orders = orderR.findByTickets(t);
+				} catch (Exception e) {
+					return "redirect:/dbError";
+				}
 				for (Order o : orders) {
-					orderR.delete(o);
+					try {
+						orderR.delete(o);
+					} catch (Exception e) {
+						return "redirect:/myEvents";
+					}
 				}
 			}
 			
-			eventR.delete(eventToDelete.get());
+			try {
+				eventR.delete(eventToDelete.get());
+			} catch (Exception e) {
+				return "redirect:/myEvents";
+			}
 		}
 		
 		

@@ -51,6 +51,23 @@ public class MyErrorController implements ErrorController {
 	    }
 	    return "error_template";
 	}
+	
+	@RequestMapping("/dbError")
+	public String handleDbError(Model model, HttpServletRequest request) {
+		
+		Principal currentUser = request.getUserPrincipal();
+		if (currentUser != null)
+			model.addAttribute("loggedUser", currentUser.getName());
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+		
+		model.addAttribute("errorNum", "Error");
+		model.addAttribute("errorName", "Error base de datos");
+    	model.addAttribute("errorMsg", "No se puede conectar a la base de datos");
+    	
+	    return "error_template";
+	}
 
 	@Override
 	public String getErrorPath() {

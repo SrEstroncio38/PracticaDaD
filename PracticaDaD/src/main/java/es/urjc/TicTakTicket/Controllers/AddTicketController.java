@@ -61,15 +61,24 @@ public class AddTicketController {
 		if (!checkUser(eventId,currentUser.getName()))
 			return "redirect:/myEvents";
 		
-		Optional<Event> eventToAdd = eventR.findById(eventId);
+		Optional<Event> eventToAdd;
+		try {
+			eventToAdd = eventR.findById(eventId);
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		if(eventToAdd.isPresent()) {
 			Event eA = eventToAdd.get();
 			if (ticketName != null && ticketPrice != null && ticketDesc != null) {
 				float price = Float.parseFloat(ticketPrice);
 				Ticket ticket = new Ticket(price, ticketName, ticketDesc, eA);
 				eA.addTicket(ticket);
-				ticketR.save(ticket);
-				eventR.save(eA);
+				try {
+					ticketR.save(ticket);
+					eventR.save(eA);
+				} catch (Exception e) {
+					return "redirect:/myEvents";
+				}
 			} else {
 				return "redirect:/myEvents";
 			}

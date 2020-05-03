@@ -34,8 +34,14 @@ public class GeneratePDFController {
 		if (currentUser != null)
 			model.addAttribute("loggedUser", currentUser.getName());
 		
-		Optional<User> currentUser2 = userR.findById(currentUser.getName());
-		Optional<Order> currentOrder = orderR.findById(Integer.parseInt(id));
+		Optional<User> currentUser2;
+		Optional<Order> currentOrder;
+		try {
+			currentUser2 = userR.findById(currentUser.getName());
+			currentOrder = orderR.findById(Integer.parseInt(id));
+		} catch (Exception e) {
+			return null;
+		}
 		
 		if (currentUser2.isPresent() && currentOrder.isPresent()) {
 			User cUser = currentUser2.get();

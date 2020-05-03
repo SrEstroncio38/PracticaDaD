@@ -43,7 +43,11 @@ public class RegisterController {
 		}
 		
 		User u = new User(username, password1);
+		try {
 		userR.save(u);
+		} catch (Exception e) {
+			return "redirect:/register";
+		}
 		
 		return "redirect:/login";
 		

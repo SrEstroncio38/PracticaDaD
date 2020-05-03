@@ -49,9 +49,19 @@ public class BuyController {
 	@RequestMapping(value = {"/buy/{id}"})
 	public String Load(Model model, @PathVariable(required = true) int id, HttpServletRequest request) {
 		
-		Event event = eventR.findById(id).get();
+		Event event;
+		try {
+			event = eventR.findById(id).get();
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
-		List<Ticket> tickets = ticketR.findByEvent(event);
+		List<Ticket> tickets;
+		try {
+			tickets = ticketR.findByEvent(event);
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
 		Principal currentUser = request.getUserPrincipal();
 		if (currentUser != null)
@@ -60,9 +70,19 @@ public class BuyController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		User currentUser2 = userR.findById(currentUser.getName()).get();
+		User currentUser2;
+		try {
+			currentUser2 = userR.findById(currentUser.getName()).get();
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
-		List<Payment> payments = paymentR.findByUser(currentUser2);
+		List<Payment> payments;
+		try {
+			payments = paymentR.findByUser(currentUser2);
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
 		model.addAttribute("tickets",tickets);
 		model.addAttribute("cards", payments);
@@ -83,7 +103,12 @@ public class BuyController {
 			) {
 		
 		Principal currentUser = request.getUserPrincipal();
-		User currentUser2 = userR.findById(currentUser.getName()).get();
+		User currentUser2;
+		try {
+			currentUser2 = userR.findById(currentUser.getName()).get();
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
 		if(selectedCard != "" && selectedCard != null) {
 			
@@ -127,8 +152,11 @@ public class BuyController {
 			
 			if (!tickets.isEmpty()) {
 				Order order = new Order(names, tickets, currentUser2, displayNumber);
-				orderR.save(order);
-				//TODO enviar email
+				try {
+					orderR.save(order);
+				} catch (Exception e) {
+					return "redirect:/events";
+				}
 				if (!email.equals("")) {
 					RestTemplate restTemplate = new RestTemplate();
 					String url = "http://myhaproxy:8080/email/" + order.getId();

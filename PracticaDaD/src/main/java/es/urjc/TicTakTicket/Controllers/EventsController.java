@@ -42,7 +42,7 @@ public class EventsController {
 		try {
 			events = eventR.findAll(PageRequest.of(numPage, paso));
 		} catch (Exception e) {
-			return "redirect:/login";
+			return "redirect:/dbError";
 		}
 		 
 

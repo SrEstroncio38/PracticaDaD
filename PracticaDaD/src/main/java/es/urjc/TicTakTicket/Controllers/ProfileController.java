@@ -39,9 +39,19 @@ public class ProfileController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		User currentUser2 = userR.findById(currentUser.getName()).get();
+		User currentUser2;
+		try {
+			currentUser2 = userR.findById(currentUser.getName()).get();
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
-		List<Payment> payments = paymentR.findByUser(currentUser2);
+		List<Payment> payments;
+		try {
+			payments = paymentR.findByUser(currentUser2);
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
 		model.addAttribute("cards", payments);
 		model.addAttribute("page_title", "Perfil");
@@ -52,7 +62,11 @@ public class ProfileController {
 	@PostMapping("/deleteCard")
 	public String Submit(Model model, @RequestParam String cardNumber) {
 		
-		paymentR.delete(paymentR.findByCardNumber(cardNumber).get(0));
+		try {
+			paymentR.delete(paymentR.findByCardNumber(cardNumber).get(0));
+		} catch (Exception e) {
+			return "redirect:/user";
+		}
 		
 		return "redirect:/user";
 	}

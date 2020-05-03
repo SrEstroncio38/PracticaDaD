@@ -40,7 +40,11 @@ public class OrdersController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		myUser = userR.findById(currentUser.getName()).get();
+		try {
+			myUser = userR.findById(currentUser.getName()).get();
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
 		int numPage = 0;
 		int paso = 5;
@@ -53,7 +57,12 @@ public class OrdersController {
 				prePageFlag = true;
 			}
 		}
-		Page<Order> orders = orderR.findByUser(myUser,PageRequest.of(numPage, paso));
+		Page<Order> orders;
+		try {
+			orders = orderR.findByUser(myUser,PageRequest.of(numPage, paso));
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		boolean orderFlag = false;
 		if(!orders.isEmpty()) {
 			orderFlag = true;

@@ -44,7 +44,11 @@ public class CreateEventController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		eventUser = userR.findById(currentUser.getName()).get();
+		try {
+			eventUser = userR.findById(currentUser.getName()).get();
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
 		model.addAttribute("page_title", "Crear Evento");
 		
@@ -59,8 +63,11 @@ public class CreateEventController {
 		if (currentUser != null)
 			model.addAttribute("loggedUser", currentUser.getName());
 		
-		
-		eventUser = userR.findById(currentUser.getName()).get();
+		try {
+			eventUser = userR.findById(currentUser.getName()).get();
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
 		
 		if(eventName != null && eventDesc != null && ticketName != null && ticketDesc != null && ticketPrice != null && eventUser != null) {
 			
@@ -69,11 +76,19 @@ public class CreateEventController {
 			
 			float price = Float.parseFloat(ticketPrice);
 			Ticket ticket = new Ticket(price, ticketName, ticketDesc, event);
-			eventR.save(event);
-			ticketR.save(ticket);
+			try {
+				eventR.save(event);
+				ticketR.save(ticket);
+			} catch (Exception e) {
+				return "redirect:/createEvent";
+			}
 			
 			event.addTicket(ticket);
-			eventR.save(event);
+			try {
+				eventR.save(event);
+			} catch (Exception e) {
+				return "redirect:/createEvent";
+			}
 			
 			return "redirect:/";
 		} else {
