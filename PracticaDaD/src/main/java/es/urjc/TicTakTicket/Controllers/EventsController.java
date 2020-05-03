@@ -24,7 +24,8 @@ public class EventsController {
 
 	@GetMapping(value = {"/","/events","/events/{num}"})
 	public String Load(Model model, @PathVariable(required = false) String num, HttpServletRequest request) {
-		
+
+			
 		int numPage = 0;
 		int paso = 5;
 		boolean prePageFlag = false;
@@ -36,7 +37,14 @@ public class EventsController {
 				prePageFlag = true;
 			}
 		}
-		Page<Event> events = eventR.findAll(PageRequest.of(numPage, paso));
+		Page<Event> events;	
+		
+		try {
+			events = eventR.findAll(PageRequest.of(numPage, paso));
+		} catch (Exception e) {
+			return "redirect:/login";
+		}
+		 
 
 		boolean eventFlag = false;
 		if(!events.isEmpty()) {
@@ -59,6 +67,7 @@ public class EventsController {
 		model.addAttribute("page_title", "Eventos");
 		
 		return "events_template";
+		
 	}
 	
 }

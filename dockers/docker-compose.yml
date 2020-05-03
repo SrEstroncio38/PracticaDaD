@@ -13,6 +13,7 @@ services:
             - web2
             - api1
             - api2
+            - db
     web1:
         build: ./ticTakTicket
         ports:
