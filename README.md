@@ -4,6 +4,13 @@
 1. [Fase 1](#id1) 
 2. [Fase 2](#id2) 
 3. [Fase 3](#id3)
+4. [Fase 4](#id4)
+
+___
+
+## Video Fase 4 ##
+
+[Aqui va el video]
 
 ___
 
@@ -376,3 +383,5 @@ cd ~/vagrant/spring
 vagrant ssh
 sudo java -jar vagrant/PracticaDaD/Ejecutables/ServicioInterno-0.0.1-SNAPSHOT.jar
 ```
+
+## Fase 4 <a name="id4"></a> ##

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,19 +13,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @CacheConfig(cacheNames="eventos")
 public interface EventRepository extends JpaRepository<Event,Integer>{
 	
-	//@CacheEvict(allEntries=true)
+	@CacheEvict(allEntries=true)
 	Event save(Event event);
 
-	//@Cacheable
+	@CachePut
 	List<Event> findByUser(User user);
-	//@Cacheable
+	@CachePut
 	List<Event> findByName(String name);
-	//@Cacheable
+	@CachePut
 	Page<Event> findByUser(User user, Pageable page);
 	
-	//@Cacheable
+	@CachePut
 	List<Event> findAll();
 	
-	//@Cacheable
+	@CachePut
 	Page<Event> findAll(Pageable page);
 }
