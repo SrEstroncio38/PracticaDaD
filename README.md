@@ -384,4 +384,27 @@ vagrant ssh
 sudo java -jar vagrant/PracticaDaD/Ejecutables/ServicioInterno-0.0.1-SNAPSHOT.jar
 ```
 
+____
 ## Fase 4 <a name="id4"></a> ##
+
+### Diagrama de clases y templates ###
+
+Se mantiene igual a los presentados en la fase 3:
+
+![Diagrama clases](./pictures/fase3/Diagrama.png)
+
+![Diagrama clases](./pictures/fase3/DiagramaSI.png)
+
+### Diagrama de infraestructura en Docker ###
+
+El siguiente diagrama corresponde a la infraestructura que se ha generado mediante _Docker_ para nuestra aplicación.
+
+![Diagrama Docker](./pictures/fase4/Infraestructura.png)
+
+### Instrucciones despliegue ###
+
+Finalmente, ejecutar está fase en su ordenador es tan sencillo como tener instalado tanto _Docker_ como _Docker-compose_ en su máquina, entrar en la carpeta _~/dockers_ del repositorio, o colocarla en el lugar donde se desee del pc, y ejecutar el siguiente comando:
+
+`sudo docker-compose up --build`
+
+Tras esto esperamos a que termine de desplegarse y ya podríamos acceder la aplicación en la ip _127.0.0.1:443_.
