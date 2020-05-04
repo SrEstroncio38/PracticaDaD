@@ -1,5 +1,7 @@
 # Tic Tak Ticket
 
+[![Tic Tak Ticket](https://img.youtube.com/vi/YHOTS076vfQ&lc=UgxIO198EDdoG3AJ14J4AaABAg/0.jpg)](https://www.youtube.com/watch?v=YHOTS076vfQ&lc=UgxIO198EDdoG3AJ14J4AaABAg)
+
 ## Índice ##
 1. [Fase 1](#id1) 
 2. [Fase 2](#id2) 
@@ -387,6 +389,14 @@ sudo java -jar vagrant/PracticaDaD/Ejecutables/ServicioInterno-0.0.1-SNAPSHOT.ja
 ____
 ## Fase 4 <a name="id4"></a> ##
 
+### Ejemplo de ejecución ###
+
+A continuación, presentamos un video donde se puede visualizar el funcionamiento de la aplicación.
+
+[![Tic Tak Ticket](https://img.youtube.com/vi/YHOTS076vfQ&lc=UgxIO198EDdoG3AJ14J4AaABAg/0.jpg)](https://www.youtube.com/watch?v=YHOTS076vfQ&lc=UgxIO198EDdoG3AJ14J4AaABAg)
+
+Este video es el mismo que se presenta al principio del Readme.
+
 ### Diagrama de clases y templates ###
 
 Se mantiene igual a los presentados en la fase 3:
@@ -408,3 +418,11 @@ Finalmente, ejecutar está fase en su ordenador es tan sencillo como tener insta
 `sudo docker-compose up --build`
 
 Tras esto esperamos a que termine de desplegarse y ya podríamos acceder la aplicación en la ip _127.0.0.1:443_.
+
+En el caso de que se quiera detener alguno de los procesos activos en el docker se puede hacer (desde otra consola) a través del comando:
+
+`sudo docker stop <id>`
+
+La id se puede consultar usando:
+
+`sudo docker ps`
