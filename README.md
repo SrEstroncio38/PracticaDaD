@@ -1,7 +1,5 @@
 # Tic Tak Ticket
 
-[![Tic Tak Ticket](https://img.youtube.com/vi/YHOTS076vfQ&lc=UgxIO198EDdoG3AJ14J4AaABAg/0.jpg)](https://www.youtube.com/watch?v=YHOTS076vfQ&lc=UgxIO198EDdoG3AJ14J4AaABAg)
-
 ## Índice ##
 1. [Fase 1](#id1) 
 2. [Fase 2](#id2) 
@@ -12,7 +10,7 @@ ___
 
 ## Video Fase 4 ##
 
-[Aqui va el video]
+[![Tic Tak Ticket](https://img.youtube.com/vi/YHOTS076vfQ/0.jpg)](https://www.youtube.com/watch?v=YHOTS076vfQ)
 
 ___
 
@@ -393,7 +391,7 @@ ____
 
 A continuación, presentamos un video donde se puede visualizar el funcionamiento de la aplicación.
 
-[![Tic Tak Ticket](https://img.youtube.com/vi/YHOTS076vfQ&lc=UgxIO198EDdoG3AJ14J4AaABAg/0.jpg)](https://www.youtube.com/watch?v=YHOTS076vfQ&lc=UgxIO198EDdoG3AJ14J4AaABAg)
+[![Tic Tak Ticket](https://img.youtube.com/vi/YHOTS076vfQ/0.jpg)](https://www.youtube.com/watch?v=YHOTS076vfQ)
 
 Este video es el mismo que se presenta al principio del Readme.
 
