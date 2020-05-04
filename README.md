@@ -387,7 +387,7 @@ sudo java -jar vagrant/PracticaDaD/Ejecutables/ServicioInterno-0.0.1-SNAPSHOT.ja
 ____
 ## Fase 4 <a name="id4"></a> ##
 
-### Ejemplo de ejecución ###
+### Ejemplo de ejecución (Video) ###
 
 A continuación, presentamos un video donde se puede visualizar el funcionamiento de la aplicación.
 
@@ -397,9 +397,23 @@ Este video es el mismo que se presenta al principio del Readme.
 
 ### Diagrama de clases y templates ###
 
-Se mantiene igual a los presentados en la fase 3:
+En cuanto a los diagramas de clases, estos se mantienen principalmente iguales a los presentados en la fase 3.
+
+#### Diagrama de la aplicación principal ####
+
+A la hora de hacer la aplicación tolerante a fallos, no han sido necesarios hacer excesivos cambios (pues muchos de estos problemas se tuvieron en cuenta desde un primer momento para evitar reescribir código). Los cambios realizados, no alteran las relaciones entre clase:
 
 ![Diagrama clases](./pictures/fase3/Diagrama.png)
+
+#### Interfaz del servicio interno ####
+
+En el servicio interno, volvemos a ver la misma estructura que en la fase anterior. A parte de la introducción de la caché, no hay cambios excesivos en el código.
+
+Las funcionalidades que implementabamos a través del servicio interno son:
+
+- **Generación de PDFs**: Es una petición POST mediante HTTP que te genera un resumen con los datos de una compra ya realizada.
+
+- **Envío de correo**: Cuando justo realizas la compra, puedes optar a proporcionar un correo electrónico para que se te envíe el PDF a través de este. También es una petición POST por HTTP.
 
 ![Diagrama clases](./pictures/fase3/DiagramaSI.png)
 
